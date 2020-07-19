@@ -7,7 +7,7 @@ export default {
     return apiInstance.post(`/users`, { user: optionsObject })
   },
   getUser(optionsObject) {
-    return apiInstance.get(`/users/#{optionsObject}`)
+    return apiInstance.get(`/users/${optionsObject}`)
   },
   getIndex() {
     return apiInstance.get('/users')
