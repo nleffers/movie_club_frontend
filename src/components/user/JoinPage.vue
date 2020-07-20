@@ -99,7 +99,7 @@ export default {
         last_name: this.lastName,
         email_notifications: this.emailNotifications
       }
-      this.$store.dispatch('AuthStore/createAndLogin', formData)
+      this.$store.dispatch('UserInfoStore/createAndLogin', formData)
     }
   }
 }

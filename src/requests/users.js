@@ -19,7 +19,7 @@ export default {
     return apiInstance.get('/users')
   },
   updateUser(userObject) {
-    return apiInstance.put(`/users/${optionsObject.id}`, { user: userObject })
+    return apiInstance.put(`/users/${userObject.id}`, { user: userObject })
   },
   deleteUser(id) {
     return apiInstance.delete(`/users/${id}`)

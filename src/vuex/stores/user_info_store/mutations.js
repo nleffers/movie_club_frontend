@@ -11,16 +11,32 @@ const mutations = {
     state.token = null
     state.tokenExpiration = null
   },
-  setUserInfo (state, userInfo) {
-    state.id = userInfo.id
-    state.username = userInfo.username
-    state.email = userInfo.email
-    state.firstName = userInfo.firstName
-    state.lastName = userInfo.lastName
-    state.emailNotifications = userInfo.emailNotifications
-    state.movies = userInfo.movies
-    state.reviews = userInfo.reviews
-    state.token = userInfo.token
+  setId (state, id) {
+    state.id = id
+  },
+  setUsername (state, username) {
+    state.username = username
+  },
+  setEmail (state, email) {
+    state.email = email
+  },
+  setFirstName (state, firstName) {
+    state.firstName = firstName
+  },
+  setLastName (state, lastName) {
+    state.lastName = lastName
+  },
+  setEmailNotifications (state, emailNotifications) {
+    state.emailNotifications = emailNotifications
+  },
+  setMovies (state, movies) {
+    state.movies = movies
+  },
+  setReviews (state, reviews) {
+    state.reviews = reviews
+  },
+  setToken (state, token) {
+    state.token = token
   },
   setTokenExpiration (state, tokenExpiration) {
     state.tokenExpiration = tokenExpiration

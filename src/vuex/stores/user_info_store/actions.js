@@ -10,7 +10,15 @@ const actions = {
     .then(res => {
       const now = new Date()
       const expirationDate = new Date(now.getTime() + (24 * 3600 * 1000))
-      commit('setUserInfo', res.data)
+      commit('setId', res.data.id)
+      commit('setUsername', res.data.username)
+      commit('setEmail', res.data.email)
+      commit('setFirstName', res.data.first_name)
+      commit('setLastName', res.data.last_name)
+      commit('setEmailNotifications', res.data.email_notifications)
+      commit('setMovies', res.data.movies)
+      commit('setReviews', res.data.reviews)
+      commit('setToken', res.data.token)
       commit('setTokenExpiration', expirationDate)
       router.replace({ name: 'root_path' })
     })
@@ -25,7 +33,15 @@ const actions = {
     .then(res => {
       const now = new Date()
       const expirationDate = new Date(now.getTime() + (24 * 2600 * 1000))
-      commit('setUserInfo', res.data)
+      commit('setId', res.data.id)
+      commit('setUsername', res.data.username)
+      commit('setEmail', res.data.email)
+      commit('setFirstName', res.data.first_name)
+      commit('setLastName', res.data.last_name)
+      commit('setEmailNotifications', res.data.email_notifications)
+      commit('setMovies', res.data.movies)
+      commit('setReviews', res.data.reviews)
+      commit('setToken', res.data.token)
       commit('setTokenExpiration', expirationDate)
       router.replace({ name: 'root_path' })
     })
@@ -33,20 +49,20 @@ const actions = {
       snotify.error('Unable to create User. Please try again.')
     })
   },
-  logout ({ commit, state, dispatch }, payload = { msgType: 'success' }) {
+  async updateUser({ commit }, userData) {
     const snotify = Vue.prototype.$snotify
-    const message = payload.message || 'Logged Out Successfully'
 
-    users.logoutUser(state.id)
-    .then(response => {
-      if (response.status == '200') {
-        commit('clearUserData')
-        $snotify[payload.msgType](message)
-        router.replace({ name: 'root_path' })
-      }
+    await users.updateUser(userData)
+    .then(res => {
+      commit('setUsername', res.data.username)
+      commit('setEmail', res.data.email)
+      commit('setFirstName', res.data.first_name)
+      commit('setLastName', res.data.last_name)
+      commit('setEmailNotifications', res.data.email_notifications)
+      router.replace({ name: 'root_path' })
     })
     .catch(e => {
-      snotify.error(`There was an error logging you out: ${e}`)
+      snotify.error('Unable to create User. Please try again.')
     })
   },
   setUserInfo({ commit }, userInfo) {
@@ -54,6 +70,20 @@ const actions = {
   },
   setTokenExpiration({ commit }, tokenExpiration) {
     commit('setTokenExpiration', tokenExpiration)
+  },
+  logout ({ commit, state, dispatch }, payload = { msgType: 'success' }) {
+    const snotify = Vue.prototype.$snotify
+    const message = payload.message || 'Logged Out Successfully'
+
+    users.logoutUser(state.id)
+    .then(response => {
+      commit('clearUserData')
+      snotify[payload.msgType](message)
+      router.replace({ name: 'root_path' })
+    })
+    .catch(e => {
+      snotify.error(`There was an error logging you out: ${e}`)
+    })
   }
 }
 
