@@ -42,9 +42,9 @@ const actions = {
     const snotify = Vue.prototype.$snotify
     const message = payload.message || 'Logged Out Successfully'
 
-    users.logoutUser(state.user_id)
+    users.logoutUser(state.userId)
     .then(response => {
-      if (response.status == '204') {
+      if (response.status == '200') {
         commit('clearAuthData')
         $snotify[payload.msgType](message)
         router.replace({ name: 'root_path' })
