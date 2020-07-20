@@ -6,6 +6,8 @@ Vue.use(VueRouter)
 const Home = () => import('./components/Home.vue')
 const Login = () => import('./components/login/LoginPage.vue')
 const Join = () => import('./components/login/JoinPage.vue')
+const UserAccount = () => import('./components/user/UserAccount.vue')
+const UserMovies = () => import('./components/user/UserMovies.vue')
 
 const authGuard = (to, from, next) => {
   if (isAuthenticated()) {
@@ -31,7 +33,7 @@ const badLink = (to, from, next) => {
 }
 
 const isAuthenticated = () => {
-  return store.getters['AuthStore/isAuthenticated']
+  return store.getters['UserInfoStore/isAuthenticated']
 }
 
 const router = new VueRouter({
@@ -52,6 +54,16 @@ const router = new VueRouter({
       path: '/login',
       component: Login,
       name: 'login_path'
+    },
+    {
+      path: '/user_account',
+      component: UserAccount,
+      name: 'user_account_path'
+    },
+    {
+      path: '/user_movies',
+      component: UserMovies,
+      name: 'user_movies_path'
     },
     {
       path: '/*',

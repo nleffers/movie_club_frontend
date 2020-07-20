@@ -14,7 +14,7 @@
         </router-link>
       </b-nav-item>
       <b-nav-item>
-        <router-link :to="{ name: 'my_movies_path', params: {} }">
+        <router-link :to="{ name: 'user_movies_path', params: {} }">
           My Movies
         </router-link>
       </b-nav-item>
@@ -42,6 +42,11 @@
       </div>
       <div v-else>
         <b-nav-item>
+          <router-link :to="{ name: 'user_account_path', params: {} }">
+            My Account
+          </router-link>
+        </b-nav-item>
+        <b-nav-item>
           <a @click="onLogout">Sign Out</a>
         </b-nav-item>
       </div>
@@ -59,17 +64,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('AuthStore', [
-      'isAuthenticated',
-      'userId',
-      'username',
-      'token',
-      'tokenExpiration'
+    ...mapGetters('UserInfoStore', [
+      'isAuthenticated'
     ])
   },
   methods: {
     onLogout() {
-      this.$store.dispatch('AuthStore/logout')
+      this.$store.dispatch('UserInfoStore/logout')
     },
     movieSearch() {
       movies.searchMovie(this.searchInput)

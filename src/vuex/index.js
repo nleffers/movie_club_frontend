@@ -1,20 +1,26 @@
 import Vue from 'vue/dist/vue.esm'
 import Vuex from 'vuex'
 import VuexPersistence from 'vuex-persist'
-import AuthStore from './stores/auth_store'
+import UserInfoStore from './stores/user_info_store'
 
 Vue.use(Vuex)
 
-const vuexUserHistory = new VuexPersistence({
+const vuexUserInfoHistory = new VuexPersistence({
   storage: window.localStorage,
-  key: 'user',
+  key: 'user_info',
   reducer: state => {
     return ({
-      AuthStore: {
-        userId: state.AuthStore.userId,
-        username: state.AuthStore.username,
-        token: state.AuthStore.token,
-        tokenExpiration: state.AuthStore.tokenExpiration
+      UserInfoStore: {
+        id: state.UserInfoStore.id,
+        username: state.UserInfoStore.username,
+        email: state.UserInfoStore.email,
+        firstName: state.UserInfoStore.firstName,
+        lastName: state.UserInfoStore.lastName,
+        emailNotifications: state.UserInfoStore.emailNotifications,
+        movies: state.UserInfoStore.movies,
+        reviews: state.UserInfoStore.reviews,
+        token: state.UserInfoStore.token,
+        tokenExpiration: state.UserInfoStore.tokenExpiration
       }
     })
   }
@@ -22,10 +28,10 @@ const vuexUserHistory = new VuexPersistence({
 
 const store = new Vuex.Store({
   modules: {
-    AuthStore
+    UserInfoStore
   },
   plugins: [
-    vuexUserHistory.plugin
+    vuexUserInfoHistory.plugin
   ]
 })
 

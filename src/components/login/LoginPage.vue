@@ -52,7 +52,7 @@ export default {
         username: this.username,
         password: this.password
       }
-      this.$store.dispatch('AuthStore/login', formData)
+      this.$store.dispatch('UserInfoStore/login', formData)
     }
   }
 }

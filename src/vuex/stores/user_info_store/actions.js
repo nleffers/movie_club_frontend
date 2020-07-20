@@ -1,7 +1,6 @@
 import router from '@/router.js'
 import Vue from 'vue/dist/vue.esm'
 import users from '@/requests/users.js'
-import axiosBackend from '@/axios/axios-backend.js'
 
 const actions = {
   async login ({ commit }, loginData) {
@@ -11,10 +10,8 @@ const actions = {
     .then(res => {
       const now = new Date()
       const expirationDate = new Date(now.getTime() + (24 * 3600 * 1000))
-      commit('setToken', res.data.token)
+      commit('setUserInfo', res.data)
       commit('setTokenExpiration', expirationDate)
-      commit('setUsername', res.data.username)
-      commit('setUserId', res.data.id)
       router.replace({ name: 'root_path' })
     })
     .catch(e => {
@@ -28,10 +25,8 @@ const actions = {
     .then(res => {
       const now = new Date()
       const expirationDate = new Date(now.getTime() + (24 * 2600 * 1000))
-      commit('setToken', res.data.access_token)
+      commit('setUserInfo', res.data)
       commit('setTokenExpiration', expirationDate)
-      commit('setUsername', res.data.username)
-      commit('setUserId', res.data.id)
       router.replace({ name: 'root_path' })
     })
     .catch(e => {
@@ -55,8 +50,8 @@ const actions = {
       router.replace({ name: 'root_path' })
     })
   },
-  setToken({ commit }, token) {
-    commit('setToken', token)
+  setUserInfo({ commit }, userInfo) {
+    commit('setUserInfo', userInfo)
   },
   setTokenExpiration({ commit }, tokenExpiration) {
     commit('setTokenExpiration', tokenExpiration)

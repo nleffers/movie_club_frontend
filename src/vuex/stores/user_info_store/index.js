@@ -2,11 +2,17 @@ import actions from './actions.js'
 import getters from './getters.js'
 import mutations from './mutations.js'
 
-const AuthStore = {
+const UserInfoStore = {
   namespaced: true,
   state: {
-    userId: '',
+    id: '',
     username: '',
+    email: '',
+    firstName: '',
+    lastName: '',
+    emailNotifications: null,
+    movies: [],
+    reviews: [],
     token: null,
     tokenExpiration: null
   },
@@ -15,4 +21,4 @@ const AuthStore = {
   mutations
 }
 
-export default AuthStore
+export default UserInfoStore
