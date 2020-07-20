@@ -14,7 +14,7 @@
         </router-link>
       </b-nav-item>
       <b-nav-item>
-        <router-link :to="{ name: 'user_movies_path', params: {} }">
+        <router-link :to="{ name: 'my_movies_path', params: {} }">
           My Movies
         </router-link>
       </b-nav-item>
@@ -42,7 +42,7 @@
       </div>
       <div v-else>
         <b-nav-item>
-          <router-link :to="{ name: 'user_account_path', params: {} }">
+          <router-link :to="{ name: 'my_account_path', params: {} }">
             My Account
           </router-link>
         </b-nav-item>

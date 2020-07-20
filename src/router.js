@@ -56,14 +56,14 @@ const router = new VueRouter({
       name: 'login_path'
     },
     {
-      path: '/user_account',
+      path: '/my_account',
       component: UserAccount,
-      name: 'user_account_path'
+      name: 'my_account_path'
     },
     {
-      path: '/user_movies',
+      path: '/my_movies',
       component: UserMovies,
-      name: 'user_movies_path'
+      name: 'my_movies_path'
     },
     {
       path: '/*',
