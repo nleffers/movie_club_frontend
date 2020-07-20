@@ -37,17 +37,16 @@ const actions = {
     const snotify = Vue.prototype.$snotify
     const message = payload.message || 'Logged Out Successfully'
 
-    users.logoutUser(state.userId)
+    users.logoutUser(state.id)
     .then(response => {
       if (response.status == '200') {
-        commit('clearAuthData')
+        commit('clearUserData')
         $snotify[payload.msgType](message)
         router.replace({ name: 'root_path' })
       }
     })
     .catch(e => {
-      snotify.error(`There was an error logging you out: ${error}`)
-      router.replace({ name: 'root_path' })
+      snotify.error(`There was an error logging you out: ${e}`)
     })
   },
   setUserInfo({ commit }, userInfo) {

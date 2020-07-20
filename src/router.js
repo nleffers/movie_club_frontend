@@ -4,8 +4,8 @@ import store from './vuex'
 Vue.use(VueRouter)
 
 const Home = () => import('./components/Home.vue')
-const Login = () => import('./components/login/LoginPage.vue')
-const Join = () => import('./components/login/JoinPage.vue')
+const Login = () => import('./components/user/LoginPage.vue')
+const Join = () => import('./components/user/JoinPage.vue')
 const UserAccount = () => import('./components/user/UserAccount.vue')
 const UserMovies = () => import('./components/user/UserMovies.vue')
 
