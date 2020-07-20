@@ -1,6 +1,11 @@
 <template>
   <div class="row">
     <div class="col-md-8 offset-md-2">
+      <div>
+        <router-link :to="{ name: 'join_path', params: {} }">
+          New user? Create an account
+        </router-link>
+      </div>
       <form @submit.prevent="submitLogin">
         <div class="form-group justify-content-center">
           <label for="username-field">Username</label>
@@ -47,7 +52,7 @@ export default {
         username: this.username,
         password: this.password
       }
-      this.$store.dispatch('AuthStore/loginAndGetInfo', formData)
+      this.$store.dispatch('AuthStore/login', formData)
     }
   }
 }

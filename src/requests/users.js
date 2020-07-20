@@ -3,17 +3,23 @@
 import apiInstance from '../axios/axios-backend.js'
 
 export default {
-  createUser(optionsObject) {
-    return apiInstance.post(`/users`, { user: optionsObject })
+  loginUser(loginObject) {
+    return apiInstance.post(`/users/login`, { login: loginObject })
   },
-  getUser(optionsObject) {
-    return apiInstance.get(`/users/${optionsObject}`)
+  logoutUser(id) {
+    return apiInstance.post(`/users/logout/${id}`)
+  },
+  createUser(userObject) {
+    return apiInstance.post(`/users`, { user: userObject })
+  },
+  getUser(userObject) {
+    return apiInstance.get(`/users/${userObject}`)
   },
   getIndex() {
     return apiInstance.get('/users')
   },
-  updateUser(optionsObject) {
-    return apiInstance.put(`/users/${optionsObject.id}`, { user: optionsObject })
+  updateUser(userObject) {
+    return apiInstance.put(`/users/${optionsObject.id}`, { user: userObject })
   },
   deleteUser(id) {
     return apiInstance.delete(`/users/${id}`)

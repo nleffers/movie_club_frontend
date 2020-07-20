@@ -1,6 +1,7 @@
 import Vue from 'vue/dist/vue.esm'
 import Vuex from 'vuex'
 import VuexPersistence from 'vuex-persist'
+import AuthStore from './stores/auth_store'
 
 Vue.use(Vuex)
 
@@ -15,6 +16,9 @@ const vuexStoreHistory = new VuexPersistence({
 })
 
 const store = new Vuex.Store({
+  modules: {
+    AuthStore
+  },
   state: {
     appVersion: null
   },

@@ -1,16 +1,22 @@
 <template>
   <div id="app">
     <div class="container-fluid">
+      <nav-bar />
       <router-view />
     </div>
   </div>
 </template>
 
 <script>
+import NavBar from './components/navigation/NavBar.vue'
+
 export default {
   data() {
     return {
     }
+  },
+  components: {
+    NavBar
   }
 }
 </script>
@@ -22,6 +28,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
