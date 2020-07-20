@@ -65,8 +65,32 @@ const actions = {
       snotify.error('Unable to create User. Please try again.')
     })
   },
-  setUserInfo({ commit }, userInfo) {
-    commit('setUserInfo', userInfo)
+  setId({ commit }, id) {
+    commit('setId', id)
+  },
+  setUsername({ commit }, username) {
+    commit('setUsername', username)
+  },
+  setEmail({ commit }, email) {
+    commit('setEmail', email)
+  },
+  setFirstName({ commit }, firstName) {
+    commit('setFirstName', firstName)
+  },
+  setLastName({ commit }, lastName) {
+    commit('setLastName', lastName)
+  },
+  setEmailNotifications({ commit }, emailNotifications) {
+    commit('setEmailNotifications', emailNotifications)
+  },
+  setMovies({ commit }, movies) {
+    commit('setMovies', movies)
+  },
+  setReviews({ commit }, reviews) {
+    commit('setReviews', reviews)
+  },
+  setToken({ commit }, token) {
+    commit('setToken', token)
   },
   setTokenExpiration({ commit }, tokenExpiration) {
     commit('setTokenExpiration', tokenExpiration)

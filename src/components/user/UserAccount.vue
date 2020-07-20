@@ -9,7 +9,8 @@
             class="form-control"
             id="username-field"
             placeholder="Username"
-            v-model="username"
+            :value="username"
+            @input="editUserField($event.target.value, 'setUsername')"
           />
         </div>
         <div class="form-group">
@@ -19,7 +20,8 @@
             class="form-control"
             id="email-field"
             placeholder="Email"
-            v-model="email"
+            :value="email"
+            @input="editUserField($event.target.value, 'setEmail')"
           />
         </div>
         <div class="form-group">
@@ -29,7 +31,8 @@
             class="form-control"
             id="first-name-field"
             placeholder="First Name"
-            v-model="firstName"
+            :value="firstName"
+            @input="editUserField($event.target.value, 'setFirstName')"
           />
         </div>
         <div class="form-group">
@@ -39,7 +42,8 @@
             class="form-control"
             id="last-name-field"
             placeholder="Last Name"
-            v-model="lastName"
+            :value="lastName"
+            @input="editUserField($event.target.value, 'setLastName')"
           />
         </div>
         <div class="form_option--check-block">
@@ -48,7 +52,8 @@
             type="checkbox"
             class="form-control"
             id="email-notifications-field"
-            v-model="emailNotifications"
+            :checked="emailNotifications"
+            @input="editUserField($event.target.checked, 'setEmailNotifications')"
           />
         </div>
         <button
@@ -77,6 +82,9 @@ export default {
     ])
   },
   methods: {
+    editUserField(value, method) {
+      this.$store.dispatch(`UserInfoStore/${method}`, value)
+    },
     submitJoin() {
       const formData = {
         id: this.id,
