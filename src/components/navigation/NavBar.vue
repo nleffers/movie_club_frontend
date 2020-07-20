@@ -61,7 +61,10 @@ export default {
   computed: {
     ...mapGetters('AuthStore', [
       'isAuthenticated',
-      'username'
+      'userId',
+      'username',
+      'token',
+      'tokenExpiration'
     ])
   },
   methods: {

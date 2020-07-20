@@ -11,7 +11,7 @@ const actions = {
     .then(res => {
       const now = new Date()
       const expirationDate = new Date(now.getTime() + (24 * 3600 * 1000))
-      commit('setToken', res.data.access_token)
+      commit('setToken', res.data.token)
       commit('setTokenExpiration', expirationDate)
       commit('setUsername', res.data.username)
       commit('setUserId', res.data.id)
