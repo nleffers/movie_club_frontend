@@ -2,6 +2,7 @@ import Vue from 'vue/dist/vue.esm'
 import Vuex from 'vuex'
 import VuexPersistence from 'vuex-persist'
 import UserInfoStore from './stores/user_info_store'
+import MovieStore from './stores/movie_store'
 
 Vue.use(Vuex)
 
@@ -28,6 +29,7 @@ const vuexUserInfoHistory = new VuexPersistence({
 
 const store = new Vuex.Store({
   modules: {
+    MovieStore,
     UserInfoStore
   },
   plugins: [

@@ -9,17 +9,18 @@
           </tr>
         </thead>
         <tbody>
-          <router-link :to="{ name: 'login_path', params: {} }">
-            <tr
-              v-for="(movie, index) in movies"
-              :key="index"
-              :movie="movie"
-              :ref="'userMovie' + index"
-            >
-              <td>{{ movie.title }}</td>
-              <td>{{ movie.user_rating }}</td>
-            </tr>
-          </router-link>
+          <div v-for="(movie, index) in movies">
+            <router-link :to="{ name: 'movie_path', params: { id: movie.id } }">
+              <tr
+                :key="index"
+                :movie="movie"
+                :ref="'userMovie' + index"
+              >
+                <td>{{ movie.title }}</td>
+                <td>{{ movie.user_rating }}</td>
+              </tr>
+            </router-link>
+          </div>
         </tbody>
       </table>
     </div>
@@ -32,8 +33,6 @@ export default {
     movies() {
       return this.$store.getters['UserInfoStore/movies']
     }
-  },
-  methods: {
   }
 }
 </script>
