@@ -18,6 +18,13 @@
           My Movies
         </router-link>
       </b-nav-item>
+      <b-nav-item-dropdown text="Browse">
+        <b-dropdown-item>
+          <router-link :to="{ name: 'movies_path', params: {} }">
+            Movies
+          </router-link>
+        </b-dropdown-item>
+      </b-nav-item-dropdown>
       <b-nav-item-dropdown text="Community">
         <b-dropdown-item>
           <router-link :to="{ name: 'community_users_path', params: {} }">

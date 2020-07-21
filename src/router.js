@@ -9,6 +9,7 @@ const Join = () => import('./components/user/JoinPage.vue')
 const UserAccount = () => import('./components/user/UserAccount.vue')
 const UserMovies = () => import('./components/user/UserMovies.vue')
 const Movie = () => import('./components/movie/Movie.vue')
+const Movies = () => import('./components/movie/Movies.vue')
 
 const authGuard = (to, from, next) => {
   if (isAuthenticated()) {
@@ -65,6 +66,11 @@ const router = new VueRouter({
       path: '/my_movies',
       component: UserMovies,
       name: 'my_movies_path'
+    },
+    {
+      path: '/movies',
+      component: Movies,
+      name: 'movies_path'
     },
     {
       path: '/movies/:id',

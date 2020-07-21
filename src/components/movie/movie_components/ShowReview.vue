@@ -1,12 +1,10 @@
 <template>
   <div class="movie-review">
     <div>
-      <label>Title</label>
-      <input :value="review.title"></input>
+      <p>Title: {{ review.title }}</p>
     </div>
     <div>
-      <label>Blog</label>
-      <textarea :value="review.blog"></textarea>
+      <p>Blog: {{ review.blog }}</p>
     </div>
   </div>
 </template>
