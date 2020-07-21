@@ -13,7 +13,7 @@
           Home
         </router-link>
       </b-nav-item>
-      <b-nav-item>
+      <b-nav-item v-if="isAuthenticated">
         <router-link :to="{ name: 'my_movies_path', params: {} }">
           My Movies
         </router-link>
