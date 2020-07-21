@@ -17,5 +17,8 @@ export default {
   },
   deleteMovie(id) {
     return apiInstance.delete(`/movies/${id}`)
+  },
+  rateMovie(ratingObject) {
+    return apiInstance.put(`/movies/${ratingObject.id}/rate`, ratingObject)
   }
 }

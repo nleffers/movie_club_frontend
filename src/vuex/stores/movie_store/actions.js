@@ -4,6 +4,9 @@ const actions = {
   },
   async addToMovieReviews({ commit }, review) {
     commit('addToMovieReviews', review)
+  },
+  async rateMovie({ commit }, rating) {
+    commit('rateMovie', rating)
   }
 }
 

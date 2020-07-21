@@ -2,8 +2,10 @@
   <div>
     <hr>
     <h1>{{ movie.title }}</h1>
-    <p>Average Rating: {{ averageRating }}</p>
-    <p v-if="movie.user_rating">Your Rating: {{ movie.user_rating }}</p>
+    <movie-rating
+      v-bind.sync="movie"
+      :currentUserId="currentUserId"
+    ></movie-rating>
     <hr>
     <create-review :movieId="id"></create-review>
     <hr>
@@ -28,6 +30,7 @@ import movies from '@/requests/movies.js'
 import CreateReview from './movie_components/CreateReview.vue'
 import ShowReview from './movie_components/ShowReview.vue'
 import EditReview from './movie_components/EditReview.vue'
+import MovieRating from './movie_components/MovieRating.vue'
 
 export default {
   props: {
@@ -36,7 +39,8 @@ export default {
   components: {
     CreateReview,
     EditReview,
-    ShowReview
+    ShowReview,
+    MovieRating
   },
   created() {
     this.getMovie()
@@ -50,9 +54,6 @@ export default {
     },
     reviews() {
       return this.$store.getters[`MovieStore/reviews`]
-    },
-    averageRating() {
-      return this.movie.rating_count == 0 ? 0 : this.movie.rating / this.movie.rating_count
     }
   },
   methods: {

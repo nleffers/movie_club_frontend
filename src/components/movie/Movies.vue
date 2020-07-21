@@ -17,7 +17,7 @@
                 :ref="'userMovie' + index"
               >
                 <td>{{ movie.title }}</td>
-                <td>{{ movie.user_rating }}</td>
+                <td>{{ movie.rating / movie.rating_count }}</td>
               </tr>
             </router-link>
           </div>
