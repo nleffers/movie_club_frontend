@@ -4,7 +4,7 @@ import apiInstance from '../axios/axios-backend.js'
 
 export default {
   createReview(optionsObject) {
-    return apiInstance.create(`/reviews`, { review: optionsObject })
+    return apiInstance.post(`/reviews`, { review: optionsObject })
   },
   updateReview(optionsObject) {
     return apiInstance.put(`/reviews/${optionsObject.id}`, { review: optionsObject })

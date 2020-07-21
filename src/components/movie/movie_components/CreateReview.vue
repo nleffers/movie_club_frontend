@@ -1,13 +1,31 @@
 <template>
   <div class="create-movie-review">
-    <div>
-      <label>Title</label>
-      <input :value="title"></input>
-    </div>
-    <div>
-      <label>Blog</label>
-      <textarea :value="blog"></textarea>
-    </div>
+    <b-form @submit.prevent="createReview">
+      <b-form-group
+        label="Title:"
+        horizontal
+      >
+        <b-form-input
+          type="text"
+          v-model="title"
+        >
+        </b-form-input>
+      </b-form-group>
+      <b-form-group
+        label="Blog:"
+        horizontal
+      >
+        <b-form-textarea
+          type="text"
+          v-model="blog"
+          placeholder="Write a review!"
+          rows="3"
+          max-rows="6"
+        >
+        </b-form-textarea>
+      </b-form-group>
+      <b-button type="submit" variant="primary" id="create-movie-review-submit">Submit</b-button>
+    </b-form>
   </div>
 </template>
 
@@ -15,6 +33,9 @@
 import reviews from '@/requests/reviews.js'
 
 export default {
+  props: {
+    movieId: Number
+  },
   data() {
     return {
       title: '',
@@ -23,13 +44,15 @@ export default {
   },
   methods: {
     createReview() {
-      const reviewObject = {
+      let reviewObject = {
         title: this.title,
-        blog: this.blog
+        blog: this.blog,
+        movie_id: this.movieId
       }
       reviews.createReview(reviewObject)
       .then(response => {
-        this.$store.dispatch(`MovieStore/addToMovieReviews`, response.data)
+        reviewObject.id = response.data.id
+        this.$store.dispatch(`MovieStore/addToMovieReviews`, reviewObject)
       })
     }
   }

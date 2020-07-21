@@ -3,7 +3,7 @@
     <h1>{{ movie.title }}</h1>
     <p>Average Rating: {{ averageRating }}</p>
     <p v-if="movie.user_rating">Your Rating: {{ movie.user_rating }}</p>
-    <create-review></create-review>
+    <create-review :movieId="id"></create-review>
     <show-review
       v-for="(review, index) in reviews"
       :review="review"
