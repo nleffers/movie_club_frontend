@@ -1,31 +1,23 @@
 <template>
   <div class="create-movie-review">
-    <b-form @submit.prevent="createReview">
-      <b-form-group
-        label="Title:"
-        horizontal
-      >
-        <b-form-input
-          type="text"
-          v-model="title"
-        >
-        </b-form-input>
-      </b-form-group>
-      <b-form-group
-        label="Blog:"
-        horizontal
-      >
-        <b-form-textarea
-          type="text"
-          v-model="blog"
+    <form @submit.prevent="createReview">
+      <div>
+        <label>Title</label>
+        <input v-model="title">
+        </input>
+      </div>
+      <div>
+        <label>Blog</label>
+        <textarea
           placeholder="Write a review!"
           rows="3"
           max-rows="6"
+          v-model="blog"
         >
-        </b-form-textarea>
-      </b-form-group>
-      <b-button type="submit" variant="primary" id="create-movie-review-submit">Submit</b-button>
-    </b-form>
+        </textarea>
+      </div>
+      <button type="submit" variant="primary" id="create-movie-review-submit">Submit</button>
+    </form>
   </div>
 </template>
 

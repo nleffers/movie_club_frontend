@@ -7,12 +7,6 @@ const UserInfoStore = {
   state: {
     id: '',
     username: '',
-    email: '',
-    firstName: '',
-    lastName: '',
-    emailNotifications: null,
-    movies: [],
-    reviews: [],
     token: null,
     tokenExpiration: null
   },

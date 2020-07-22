@@ -1,11 +1,11 @@
 const actions = {
-  async setMovie({ commit }, movie) {
+  setMovie({ commit }, movie) {
     commit('setMovie', movie)
   },
-  async addToMovieReviews({ commit }, review) {
+  addToMovieReviews({ commit }, review) {
     commit('addToMovieReviews', review)
   },
-  async rateMovie({ commit }, rating) {
+  rateMovie({ commit }, rating) {
     commit('rateMovie', rating)
   }
 }

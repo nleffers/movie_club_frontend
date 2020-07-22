@@ -5,7 +5,7 @@ const mutations = {
     state.movie = payload
   },
   addToMovieReviews(state, payload) {
-    state.movie.reviews.push(payload)
+    state.movie.reviews.unshift(payload)
   },
   rateMovie(state, value) {
     if (state.movie.user_rating) {

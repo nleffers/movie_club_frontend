@@ -28,10 +28,31 @@
 </template>
 
 <script>
+import users from '@/requests/users.js'
+
 export default {
+  data() {
+    return {
+      movies: []
+    }
+  },
+  created() {
+    this.getUserMovies()
+  },
   computed: {
-    movies() {
-      return this.$store.getters['UserInfoStore/movies']
+    currentUserId() {
+      return this.$store.getters[`UserInfoStore/id`]
+    }
+  },
+  methods: {
+    getUserMovies() {
+      users.getMovies(this.currentUserId)
+        .then(response => {
+          this.movies = response.data
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
   }
 }

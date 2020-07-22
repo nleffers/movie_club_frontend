@@ -5,5 +5,10 @@
 
 <script>
 export default {
+  computed: {
+    store() {
+      return this.$store
+    }
+  }
 }
 </script>

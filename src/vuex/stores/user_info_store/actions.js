@@ -12,12 +12,6 @@ const actions = {
       const expirationDate = new Date(now.getTime() + (24 * 3600 * 1000))
       commit('setId', res.data.id)
       commit('setUsername', res.data.username)
-      commit('setEmail', res.data.email)
-      commit('setFirstName', res.data.first_name)
-      commit('setLastName', res.data.last_name)
-      commit('setEmailNotifications', res.data.email_notifications)
-      commit('setMovies', res.data.movies)
-      commit('setReviews', res.data.reviews)
       commit('setToken', res.data.token)
       commit('setTokenExpiration', expirationDate)
       router.replace({ name: 'root_path' })
@@ -35,12 +29,6 @@ const actions = {
       const expirationDate = new Date(now.getTime() + (24 * 2600 * 1000))
       commit('setId', res.data.id)
       commit('setUsername', res.data.username)
-      commit('setEmail', res.data.email)
-      commit('setFirstName', res.data.first_name)
-      commit('setLastName', res.data.last_name)
-      commit('setEmailNotifications', res.data.email_notifications)
-      commit('setMovies', res.data.movies)
-      commit('setReviews', res.data.reviews)
       commit('setToken', res.data.token)
       commit('setTokenExpiration', expirationDate)
       router.replace({ name: 'root_path' })
@@ -73,24 +61,6 @@ const actions = {
   },
   setUsername({ commit }, username) {
     commit('setUsername', username)
-  },
-  setEmail({ commit }, email) {
-    commit('setEmail', email)
-  },
-  setFirstName({ commit }, firstName) {
-    commit('setFirstName', firstName)
-  },
-  setLastName({ commit }, lastName) {
-    commit('setLastName', lastName)
-  },
-  setEmailNotifications({ commit }, emailNotifications) {
-    commit('setEmailNotifications', emailNotifications)
-  },
-  setMovies({ commit }, movies) {
-    commit('setMovies', movies)
-  },
-  setReviews({ commit }, reviews) {
-    commit('setReviews', reviews)
   },
   setToken({ commit }, token) {
     commit('setToken', token)

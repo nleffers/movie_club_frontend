@@ -23,5 +23,8 @@ export default {
   },
   deleteUser(id) {
     return apiInstance.delete(`/users/${id}`)
+  },
+  getMovies(id) {
+    return apiInstance.get(`/users/${id}/movies`)
   }
 }

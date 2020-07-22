@@ -95,7 +95,6 @@ export default {
       movies.rateMovie(ratingObject)
         .then(response => {
           this.$store.dispatch(`MovieStore/rateMovie`, value)
-          this.$store.dispatch(`UserInfoStore/rateMovie`, ratingObject)
         })
         .catch(err => {
           console.log(err)
