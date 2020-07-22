@@ -6,8 +6,9 @@ Vue.use(VueRouter)
 const Home = () => import('./components/Home.vue')
 const Login = () => import('./components/user/LoginPage.vue')
 const Join = () => import('./components/user/JoinPage.vue')
-const UserAccount = () => import('./components/user/UserAccount.vue')
-const UserMovies = () => import('./components/user/UserMovies.vue')
+const MyAccount = () => import('./components/user/UserAccount.vue')
+const MyMovies = () => import('./components/user/UserMovies.vue')
+const User = () => import('./components/user/User.vue')
 const Movie = () => import('./components/movie/Movie.vue')
 const Movies = () => import('./components/movie/Movies.vue')
 const Community = () => import('./components/community/Community.vue')
@@ -61,12 +62,12 @@ const router = new VueRouter({
     },
     {
       path: '/my_account',
-      component: UserAccount,
+      component: MyAccount,
       name: 'my_account_path'
     },
     {
       path: '/my_movies',
-      component: UserMovies,
+      component: MyMovies,
       name: 'my_movies_path'
     },
     {
@@ -82,8 +83,9 @@ const router = new VueRouter({
     },
     {
       path: '/user/:id',
-      component: UserAccount,
-      name: 'user_path'
+      component: User,
+      name: 'user_path',
+      props: true
     },
     {
       path: '/top_movies',
