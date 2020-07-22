@@ -68,20 +68,41 @@
 </template>
 
 <script>
+import users from '@/requests/users.js'
 import { mapGetters } from 'vuex'
 
 export default {
+  data() {
+    return {
+      username: '',
+      email: '',
+      firstName:'',
+      lastName: '',
+      emailNotifications: ''
+    }
+  },
+  created() {
+    this.getUser()
+  },
   computed: {
-    ...mapGetters('UserInfoStore', [
-      'id',
-      'username',
-      'email',
-      'firstName',
-      'lastName',
-      'emailNotifications'
-    ])
+    currentUserId() {
+      return this.$store.getters['UserInfoStore/id']
+    }
   },
   methods: {
+    getUser() {
+      users.getUser(this.currentUserId)
+        .then(response => {
+          this.username = response.data.username
+          this.email = response.data.email
+          this.firstName = response.data.first_name
+          this.lastName = response.data.last_name
+          this.emailNotifications = response.data.email_notifications
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
     editUserField(value, method) {
       this.$store.dispatch(`UserInfoStore/${method}`, value)
     },

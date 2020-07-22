@@ -6,9 +6,10 @@
       v-bind.sync="movie"
       :currentUserId="currentUserId"
     ></movie-rating>
-    <hr>
-    <create-review :movieId="id"></create-review>
-    <hr>
+    <create-review
+      v-if="currentUserId"
+      :movieId="id"
+    ></create-review>
     <template v-for="(review, index) in reviews">
       <show-review
         v-if="reviewByUser(review.user_id)"
@@ -20,7 +21,6 @@
         v-bind.sync="review"
         :key="index"
       />
-      <hr>
     </template>
   </div>
 </template>

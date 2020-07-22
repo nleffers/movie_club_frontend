@@ -6,6 +6,7 @@
     <div>
       <p>Blog: {{ review.blog }}</p>
     </div>
+    <hr>
   </div>
 </template>
 

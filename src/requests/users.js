@@ -12,8 +12,8 @@ export default {
   createUser(userObject) {
     return apiInstance.post(`/users`, { user: userObject })
   },
-  getUser(userObject) {
-    return apiInstance.get(`/users/${userObject}`)
+  getUser(id) {
+    return apiInstance.get(`/users/${id}`)
   },
   getIndex() {
     return apiInstance.get('/users')

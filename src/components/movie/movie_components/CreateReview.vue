@@ -18,6 +18,7 @@
       </div>
       <button type="submit" variant="primary" id="create-movie-review-submit">Submit</button>
     </form>
+    <hr>
   </div>
 </template>
 
