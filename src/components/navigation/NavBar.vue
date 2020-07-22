@@ -27,7 +27,7 @@
       </b-nav-item-dropdown>
       <b-nav-item-dropdown text="Community">
         <b-dropdown-item>
-          <router-link :to="{ name: 'community_users_path', params: {} }">
+          <router-link :to="{ name: 'community_path', params: {} }">
             Users
           </router-link>
         </b-dropdown-item>

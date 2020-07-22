@@ -10,6 +10,7 @@ const UserAccount = () => import('./components/user/UserAccount.vue')
 const UserMovies = () => import('./components/user/UserMovies.vue')
 const Movie = () => import('./components/movie/Movie.vue')
 const Movies = () => import('./components/movie/Movies.vue')
+const Community = () => import('./components/community/Community.vue')
 
 const authGuard = (to, from, next) => {
   if (isAuthenticated()) {
@@ -77,6 +78,11 @@ const router = new VueRouter({
       component: Movie,
       name: 'movie_path',
       props: true
+    },
+    {
+      path: '/community',
+      component: Community,
+      name: 'community_path'
     },
     {
       path: '/*',

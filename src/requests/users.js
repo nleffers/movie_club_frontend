@@ -15,7 +15,7 @@ export default {
   getUser(id) {
     return apiInstance.get(`/users/${id}`)
   },
-  getIndex() {
+  getUsers() {
     return apiInstance.get('/users')
   },
   updateUser(userObject) {
