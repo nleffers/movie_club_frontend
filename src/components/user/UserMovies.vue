@@ -9,17 +9,22 @@
           </tr>
         </thead>
         <tbody>
-          <div v-for="(movie, index) in movies">
-            <router-link :to="{ name: 'movie_path', params: { id: movie.id } }">
-              <tr
-                :key="index"
-                :ref="'userMovie' + index"
-              >
-                <td>{{ movie.title }}</td>
-                <td>{{ movie.user_rating }}</td>
-              </tr>
-            </router-link>
-          </div>
+          <tr
+            v-for="(movie, index) in movies"
+            :key="index"
+            :ref="'userMovie' + index"
+          >
+            <td>
+              <router-link :to="{ name: 'movie_path', params: { id: movie.id } }">
+                {{ movie.title }}
+              </router-link>
+            </td>
+            <td>
+              <router-link :to="{ name: 'movie_path', params: { id: movie.id } }">
+                {{ movie.user_rating }}
+              </router-link>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

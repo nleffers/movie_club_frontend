@@ -66,33 +66,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.content-wrapper {
-  display: flex;
-}
-
-th {
-  width: 100px;
-  height: 30px;
-  text-align: center;
-}
-
-tr:nth-child(even) {
-  background-color: #eee;
-}
-
-td {
-  width: 100px;
-  padding: 10px 10px 10px 10px;
-  text-align: center;
-}
-
-thead {
-  background-color: #e5e5e5;
-}
-
-tbody, thead {
-  font-size: 0.73rem;
-}
-</style>
