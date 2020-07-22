@@ -12,7 +12,6 @@
             <router-link :to="{ name: 'user_path', params: { id: user.id } }">
               <tr
                 :key="index"
-                :movie="user"
                 :ref="'user-' + index"
               >
                 <td>{{ user.username }}</td>

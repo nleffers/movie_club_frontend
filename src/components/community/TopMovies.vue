@@ -5,7 +5,6 @@
         <thead>
           <tr>
             <th>Title</th>
-            <th>User Rating</th>
           </tr>
         </thead>
         <tbody>
@@ -13,10 +12,9 @@
             <router-link :to="{ name: 'movie_path', params: { id: movie.id } }">
               <tr
                 :key="index"
-                :ref="'userMovie' + index"
+                :ref="'movie-' + index"
               >
                 <td>{{ movie.title }}</td>
-                <td>{{ movie.user_rating }}</td>
               </tr>
             </router-link>
           </div>
@@ -27,7 +25,7 @@
 </template>
 
 <script>
-import users from '@/requests/users.js'
+import movies from '@/requests/movies.js'
 
 export default {
   data() {
@@ -36,21 +34,13 @@ export default {
     }
   },
   created() {
-    this.getUserMovies()
-  },
-  computed: {
-    currentUserId() {
-      return this.$store.getters[`UserInfoStore/id`]
-    }
+    this.getMovies()
   },
   methods: {
-    getUserMovies() {
-      users.getMovies(this.currentUserId)
+    getMovies() {
+      movies.getTopMovies()
         .then(response => {
           this.movies = response.data
-        })
-        .catch(err => {
-          console.log(err)
         })
     }
   }

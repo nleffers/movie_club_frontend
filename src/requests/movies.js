@@ -15,6 +15,9 @@ export default {
   getMovies() {
     return apiInstance.get('/movies')
   },
+  getTopMovies() {
+    return apiInstance.get('/movies/top')
+  },
   deleteMovie(id) {
     return apiInstance.delete(`/movies/${id}`)
   },

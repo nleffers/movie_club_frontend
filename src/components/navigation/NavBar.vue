@@ -8,11 +8,6 @@
       justified
       class="middle-nav"
     >
-      <b-nav-item>
-        <router-link :to="{ name: 'root_path', params: {} }">
-          Home
-        </router-link>
-      </b-nav-item>
       <b-nav-item v-if="isAuthenticated">
         <router-link :to="{ name: 'my_movies_path', params: {} }">
           My Movies
@@ -25,10 +20,13 @@
           </router-link>
         </b-dropdown-item>
       </b-nav-item-dropdown>
-      <b-nav-item-dropdown text="Community">
+      <b-nav-item-dropdown
+        v-if="isAuthenticated"
+        text="Community"
+      >
         <b-dropdown-item>
           <router-link :to="{ name: 'community_path', params: {} }">
-            Users
+            Community
           </router-link>
         </b-dropdown-item>
         <b-dropdown-item>
@@ -62,8 +60,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
 export default {
   data() {
     return {
@@ -71,9 +67,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('UserInfoStore', [
-      'isAuthenticated'
-    ])
+    isAuthenticated() {
+      return this.$store.getters['UserInfoStore/isAuthenticated']
+    }
   },
   methods: {
     onLogout() {

@@ -5,22 +5,39 @@
         <thead>
           <tr>
             <th>Title</th>
-            <th>User Rating</th>
+            <th>Average Rating</th>
+            <th>Users Rated</th>
           </tr>
         </thead>
         <tbody>
-          <div v-for="(movie, index) in movies">
-            <router-link :to="{ name: 'movie_path', params: { id: movie.id } }">
-              <tr
-                :key="index"
-                :movie="movie"
-                :ref="'userMovie' + index"
+          <tr
+            v-for="(movie, index) in movies"
+            :key="index"
+            :movie="movie"
+            :ref="'userMovie' + index"
+          >
+            <td>
+              <router-link
+                :to="{ name: 'movie_path', params: { id: movie.id } }"
               >
-                <td>{{ movie.title }}</td>
-                <td>{{ movie.rating / movie.rating_count }}</td>
-              </tr>
-            </router-link>
-          </div>
+                {{ movie.title }}
+              </router-link>
+            </td>
+            <td>
+              <router-link
+                :to="{ name: 'movie_path', params: { id: movie.id } }"
+              >
+                {{ movie.rating / movie.rating_count }}
+              </router-link>
+            </td>
+            <td>
+              <router-link
+                :to="{ name: 'movie_path', params: { id: movie.id } }"
+              >
+                {{ movie.rating_count }}
+              </router-link>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -49,3 +66,33 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.content-wrapper {
+  display: flex;
+}
+
+th {
+  width: 100px;
+  height: 30px;
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background-color: #eee;
+}
+
+td {
+  width: 100px;
+  padding: 10px 10px 10px 10px;
+  text-align: center;
+}
+
+thead {
+  background-color: #e5e5e5;
+}
+
+tbody, thead {
+  font-size: 0.73rem;
+}
+</style>
