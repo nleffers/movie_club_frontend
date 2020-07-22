@@ -1,7 +1,6 @@
 <template>
   <div>
     <p>Average Rating: {{ averageRating }}</p>
-    <p v-if="user_rating">Your Rating: {{ user_rating }}</p>
     <div
       v-if="currentUserId"
       class="user-rating-wrapper"
