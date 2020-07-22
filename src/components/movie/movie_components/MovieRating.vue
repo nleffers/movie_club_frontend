@@ -4,36 +4,51 @@
     <p v-if="user_rating">Your Rating: {{ user_rating }}</p>
     <div
       v-if="currentUserId"
-      id="user-rating"
+      class="user-rating-wrapper"
     >
-      <div @click="rateMovie(1)">
+      <div
+        class="user-rating"
+        :class="{ 'checked': oneStar }"
+        @click="rateMovie(1)"
+      >
         <i
           class="fa fa-star"
-          :class="{ 'checked': oneStar }"
         ></i>
       </div>
-      <div @click="rateMovie(2)">
+      <div
+        class="user-rating"
+        :class="{ 'checked': twoStars }"
+        @click="rateMovie(2)"
+      >
         <i
           class="fa fa-star"
-          :class="{ 'checked': twoStars }"
         ></i>
       </div>
-      <div @click="rateMovie(3)">
+      <div
+        class="user-rating"
+        :class="{ 'checked': threeStars }"
+        @click="rateMovie(3)"
+      >
         <i
           class="fa fa-star"
-          :class="{ 'checked': threeStars }"
         ></i>
       </div>
-      <div @click="rateMovie(4)">
+      <div
+        class="user-rating"
+        :class="{ 'checked': fourStars }"
+        @click="rateMovie(4)"
+      >
         <i
           class="fa fa-star"
-          :class="{ 'checked': fourStars }"
         ></i>
       </div>
-      <div @click="rateMovie(5)">
+      <div
+        class="user-rating"
+        :class="{ 'checked': fiveStars }"
+        @click="rateMovie(5)"
+      >
         <i
           class="fa fa-star"
-          :class="{ 'checked': fiveStars }"
         ></i>
       </div>
     </div>
@@ -55,19 +70,19 @@ export default {
       return this.rating_count == 0 ? 0 : this.rating / this.rating_count
     },
     oneStar() {
-      return this.user_rating == '1'
+      return Number(this.user_rating) >= 1
     },
     twoStars() {
-      return this.user_rating == '2'
+      return Number(this.user_rating) >= 2
     },
     threeStars() {
-      return this.user_rating == '3'
+      return Number(this.user_rating) >= 3
     },
     fourStars() {
-      return this.user_rating == '4'
+      return Number(this.user_rating) >= 4
     },
     fiveStars() {
-      return this.user_rating == '5'
+      return Number(this.user_rating) >= 5
     }
   },
   methods: {
@@ -80,6 +95,7 @@ export default {
       movies.rateMovie(ratingObject)
         .then(response => {
           this.$store.dispatch(`MovieStore/rateMovie`, value)
+          this.$store.dispatch(`UserInfoStore/rateMovie`, ratingObject)
         })
         .catch(err => {
           console.log(err)
@@ -90,7 +106,11 @@ export default {
 </script>
 
 <style scoped>
-.at-least-this-good {
-  color: yellow;
+.checked {
+  color: orange;
+}
+
+.user-rating {
+  display: inline-block;
 }
 </style>

@@ -11,6 +11,16 @@ const mutations = {
     state.token = null
     state.tokenExpiration = null
   },
+  rateMovie (state, payload) {
+    let movie = state.movies.find(movie => movie.id == payload.id)
+    if (movie.user_rating) {
+      movie.rating -= movie.user_rating
+    } else {
+      movie.rating_count++
+    }
+    movie.user_rating = payload.rating
+    movie.rating += payload.rating
+  },
   setId (state, id) {
     state.id = id
   },

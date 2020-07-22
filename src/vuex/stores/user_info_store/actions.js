@@ -65,6 +65,9 @@ const actions = {
       snotify.error('Unable to create User. Please try again.')
     })
   },
+  rateMovie({ commit }, rateObject) {
+    commit('rateMovie', rateObject)
+  },
   setId({ commit }, id) {
     commit('setId', id)
   },
