@@ -66,6 +66,9 @@ export default {
     reviewWrittenByUser(userId) {
       return this.currentUserId == userId
     }
+  },
+  destroyed() {
+    this.$store.dispatch(`MovieStore/clearMovie`)
   }
 }
 </script>

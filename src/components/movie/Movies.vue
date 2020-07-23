@@ -4,9 +4,9 @@
       <table>
         <thead>
           <tr>
+            <th></th>
             <th>Title</th>
             <th>Average Rating</th>
-            <th>Users Rated</th>
           </tr>
         </thead>
         <tbody>

@@ -4,9 +4,9 @@
       <table>
         <thead>
           <tr>
+            <th></th>
             <th>Title</th>
             <th>Voting Average</th>
-            <th>Voting Count</th>
             <th>User Rating</th>
           </tr>
         </thead>

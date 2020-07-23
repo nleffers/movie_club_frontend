@@ -4,6 +4,9 @@ const mutations = {
   setMovie(state, payload) {
     state.movie = payload
   },
+  clearMovie(state) {
+    state.movie = {}
+  },
   addToMovieReviews(state, payload) {
     state.movie.reviews.unshift(payload)
   },
