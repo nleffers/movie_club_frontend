@@ -10,34 +10,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr
+          <movie-row
             v-for="(movie, index) in movies"
-            :key="index"
             :movie="movie"
-            :ref="'userMovie' + index"
+            :key="index"
+            :ref="'user-movie-' + index"
           >
-            <td>
-              <router-link
-                :to="{ name: 'movie_path', params: { id: movie.id } }"
-              >
-                {{ movie.title }}
-              </router-link>
-            </td>
-            <td>
-              <router-link
-                :to="{ name: 'movie_path', params: { id: movie.id } }"
-              >
-                {{ movie.rating / movie.rating_count }}
-              </router-link>
-            </td>
-            <td>
-              <router-link
-                :to="{ name: 'movie_path', params: { id: movie.id } }"
-              >
-                {{ movie.rating_count }}
-              </router-link>
-            </td>
-          </tr>
+          </movie-row>
         </tbody>
       </table>
     </div>
@@ -46,8 +25,12 @@
 
 <script>
 import movies from '@/requests/movies.js'
+import MovieRow from '../shared/MovieRow.vue'
 
 export default {
+  components: {
+    MovieRow
+  },
   data() {
     return {
       movies: []
