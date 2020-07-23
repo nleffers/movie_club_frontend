@@ -8,17 +8,17 @@
     ></movie-rating>
     <create-review
       v-if="currentUserId"
-      :movieId="id"
+      :imdbId="movie.imdb_id"
     ></create-review>
     <template v-for="(review, index) in reviews">
-      <show-review
-        v-if="reviewByUser(review.user_id)"
-        :review="review"
+      <edit-review
+        v-if="reviewWrittenByUser(review.user_id)"
+        v-bind.sync="review"
         :key="index"
       />
-      <edit-review
+      <show-review
         v-else
-        v-bind.sync="review"
+        :review="review"
         :key="index"
       />
     </template>
@@ -63,7 +63,7 @@ export default {
         this.$store.dispatch(`MovieStore/setMovie`, response.data)
       })
     },
-    reviewByUser(userId) {
+    reviewWrittenByUser(userId) {
       return this.currentUserId == userId
     }
   }

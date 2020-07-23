@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>Average Rating: {{ averageRating }}</p>
+    <p>Average Rating: {{ vote_average }}</p>
     <div
       v-if="currentUserId"
       class="user-rating-wrapper"
@@ -50,6 +50,51 @@
           class="fa fa-star"
         ></i>
       </div>
+      <div
+        class="user-rating"
+        :class="{ 'checked': sixStars }"
+        @click="rateMovie(6)"
+      >
+        <i
+          class="fa fa-star"
+        ></i>
+      </div>
+      <div
+        class="user-rating"
+        :class="{ 'checked': sevenStars }"
+        @click="rateMovie(7)"
+      >
+        <i
+          class="fa fa-star"
+        ></i>
+      </div>
+      <div
+        class="user-rating"
+        :class="{ 'checked': eightStars }"
+        @click="rateMovie(8)"
+      >
+        <i
+          class="fa fa-star"
+        ></i>
+      </div>
+      <div
+        class="user-rating"
+        :class="{ 'checked': nineStars }"
+        @click="rateMovie(9)"
+      >
+        <i
+          class="fa fa-star"
+        ></i>
+      </div>
+      <div
+        class="user-rating"
+        :class="{ 'checked': tenStars }"
+        @click="rateMovie(10)"
+      >
+        <i
+          class="fa fa-star"
+        ></i>
+      </div>
     </div>
     <hr>
   </div>
@@ -60,15 +105,13 @@ import movies from '@/requests/movies.js'
 export default {
   props: {
     id: [Number, String],
-    rating: [Number, String],
-    rating_count: [Number, String],
+    imdb_id: String,
+    vote_average: [Number, String],
+    vote_count: [Number, String],
     user_rating: [Number, String],
     currentUserId: [Number, String]
   },
   computed: {
-    averageRating() {
-      return this.rating_count == 0 ? 0 : this.rating / this.rating_count
-    },
     oneStar() {
       return Number(this.user_rating) >= 1
     },
@@ -83,12 +126,28 @@ export default {
     },
     fiveStars() {
       return Number(this.user_rating) >= 5
+    },
+    sixStars() {
+      return Number(this.user_rating) >= 6
+    },
+    sevenStars() {
+      return Number(this.user_rating) >= 7
+    },
+    eightStars() {
+      return Number(this.user_rating) >= 8
+    },
+    nineStars() {
+      return Number(this.user_rating) >= 9
+    },
+    tenStars() {
+      return Number(this.user_rating) >= 10
     }
   },
   methods: {
     rateMovie(value) {
       const ratingObject = {
         id: this.id,
+        imdb_id: this.imdb_id,
         rating: value
       }
 
@@ -111,5 +170,9 @@ export default {
 
 .user-rating {
   display: inline-block;
+}
+
+.user-rating:hover {
+  color: orange;
 }
 </style>

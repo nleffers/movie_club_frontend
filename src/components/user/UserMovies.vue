@@ -5,6 +5,8 @@
         <thead>
           <tr>
             <th>Title</th>
+            <th>Voting Average</th>
+            <th>Voting Count</th>
             <th>User Rating</th>
           </tr>
         </thead>
@@ -17,6 +19,16 @@
             <td>
               <router-link :to="{ name: 'movie_path', params: { id: movie.id } }">
                 {{ movie.title }}
+              </router-link>
+            </td>
+            <td>
+              <router-link :to="{ name: 'movie_path', params: { id: movie.id } }">
+                {{ movie.vote_average }}
+              </router-link>
+            </td>
+            <td>
+              <router-link :to="{ name: 'movie_path', params: { id: movie.id } }">
+                {{ movie.vote_count }}
               </router-link>
             </td>
             <td>

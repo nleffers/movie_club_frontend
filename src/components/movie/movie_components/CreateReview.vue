@@ -27,7 +27,7 @@ import reviews from '@/requests/reviews.js'
 
 export default {
   props: {
-    movieId: [Number, String]
+    imdbId: [Number, String]
   },
   data() {
     return {
@@ -40,7 +40,7 @@ export default {
       let reviewObject = {
         title: this.title,
         blog: this.blog,
-        movie_id: this.movieId
+        imdb_id: this.imdbId
       }
       reviews.createReview(reviewObject)
       .then(response => {
