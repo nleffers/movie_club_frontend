@@ -11,8 +11,7 @@ const MyMovies = () => import('./components/user/UserMovies.vue')
 const User = () => import('./components/user/User.vue')
 const Movie = () => import('./components/movie/Movie.vue')
 const Movies = () => import('./components/movie/Movies.vue')
-const Community = () => import('./components/community/Community.vue')
-const TopMovies = () => import('./components/community/TopMovies.vue')
+const SearchMovies = () => import('./components/movie/SearchMovies.vue')
 
 const authGuard = (to, from, next) => {
   if (isAuthenticated()) {
@@ -82,20 +81,15 @@ const router = new VueRouter({
       props: true
     },
     {
+      path: '/search',
+      component: SearchMovies,
+      name: 'search_movies_path'
+    },
+    {
       path: '/user/:id',
       component: User,
       name: 'user_path',
       props: true
-    },
-    {
-      path: '/top_movies',
-      component: TopMovies,
-      name: 'community_top_movies_path'
-    },
-    {
-      path: '/community',
-      component: Community,
-      name: 'community_path'
     },
     {
       path: '/*',

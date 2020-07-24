@@ -13,7 +13,12 @@ const MovieStore = {
         rating_count: '',
         user_rating: '',
         reviews: []
-      }
+      },
+      searchResults: [],
+      nowPlaying: [],
+      popular: [],
+      topRated: [],
+      upcoming: []
     }
   },
   actions,

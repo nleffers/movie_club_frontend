@@ -4,8 +4,23 @@ const mutations = {
   setMovie(state, payload) {
     state.movie = payload
   },
+  setMovies(state, payload) {
+    state.nowPlaying = payload.now_playing
+    state.popular = payload.popular
+    state.topRated = payload.top_rated
+    state.upcoming = payload.upcoming
+  },
+  searchMovies(state, payload) {
+    state.searchResults = payload
+  },
   clearMovie(state) {
     state.movie = {}
+  },
+  clearMovies(state) {
+    state.nowPlaying = []
+    state.popular = []
+    state.topRated = []
+    state.upcoming = []
   },
   addToMovieReviews(state, payload) {
     state.movie.reviews.unshift(payload)

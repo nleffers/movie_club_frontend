@@ -1,51 +1,72 @@
 <template>
-  <div>
-    <div class="content-wrapper">
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Title</th>
-            <th>Average Rating</th>
-          </tr>
-        </thead>
-        <tbody>
-          <movie-row
-            v-for="(movie, index) in movies"
-            :movie="movie"
-            :key="index"
-            :ref="'user-movie-' + index"
-          >
-          </movie-row>
-        </tbody>
-      </table>
+  <div class="movies-wrapper">
+    <div>
+      <div
+        class="tab-option"
+        @click="changeTab('top-rated')"
+      >
+        Top Rated
+      </div>
+      <div
+        class="tab-option"
+        @click="changeTab('popular')"
+      >
+        Popular
+      </div>
+      <div
+        class="tab-option"
+        @click="changeTab('now-playing')"
+      >
+        Now Playing
+      </div>
+      <div
+        class="tab-option"
+        @click="changeTab('upcoming')"
+      >
+        Upcoming
+      </div>
     </div>
+    <top-rated-movies v-if="currentTab == 'top-rated'"></top-rated-movies>
+    <popular-movies v-else-if="currentTab == 'popular'"></popular-movies>
+    <now-playing-movies v-else-if="currentTab == 'now-playing'"></now-playing-movies>
+    <upcoming-movies v-else-if="currentTab == 'upcoming'"></upcoming-movies>
   </div>
 </template>
 
 <script>
-import movies from '@/requests/movies.js'
-import MovieRow from '../shared/MovieRow.vue'
+import NowPlayingMovies from './movie_components/NowPlayingMovies.vue'
+import PopularMovies from './movie_components/PopularMovies.vue'
+import TopRatedMovies from './movie_components/TopRatedMovies.vue'
+import UpcomingMovies from './movie_components/UpcomingMovies.vue'
 
 export default {
   components: {
-    MovieRow
+    NowPlayingMovies,
+    PopularMovies,
+    TopRatedMovies,
+    UpcomingMovies
   },
   data() {
     return {
-      movies: []
+      currentTab: 'top-rated'
     }
   },
   created() {
-    this.getMovies()
+    this.$store.dispatch(`MovieStore/setMovies`)
+  },
+  destroyed() {
+    this.$store.dispatch(`Movie/clearMovies`)
   },
   methods: {
-    getMovies() {
-      movies.getMovies()
-        .then(response => {
-          this.movies = response.data
-        })
+    changeTab(value) {
+      this.currentTab = value
     }
   }
 }
 </script>
+
+<style scoped>
+.tab-option {
+  display: inline;
+}
+</style>

@@ -23,5 +23,8 @@ export default {
   },
   rateMovie(ratingObject) {
     return apiInstance.put(`/movies/${ratingObject.id}/rate`, ratingObject)
+  },
+  searchMovies(title) {
+    return apiInstance.get('/movies/search', { params: { title: title } })
   }
 }

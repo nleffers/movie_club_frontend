@@ -20,32 +20,34 @@
           </router-link>
         </b-dropdown-item>
       </b-nav-item-dropdown>
-      <b-nav-item-dropdown
-        v-if="isAuthenticated"
-        text="Community"
-      >
-        <b-dropdown-item>
-          <router-link :to="{ name: 'community_path', params: {} }">
-            Community
-          </router-link>
-        </b-dropdown-item>
-        <b-dropdown-item>
-          <router-link :to="{ name: 'community_top_movies_path', params: {} }">
-            Top Movies
-          </router-link>
-        </b-dropdown-item>
-      </b-nav-item-dropdown>
     </b-nav>
 
-    <b-nav class="ml-auto right-side">
-      <div v-if="!isAuthenticated">
+    <b-navbar-nav class="ml-auto right-side">
+      <template>
+        <b-nav-form>
+          <b-form-input
+            v-model="searchInput"
+            size="sm"
+            class="mr-sm-6"
+            type="text"
+            placeholder="Search"
+          />
+          <b-button
+            size="sm"
+            class="search-button"
+            type="submit"
+            @click.prevent="searchClick"
+          />
+        </b-nav-form>
+      </template>
+      <template v-if="!isAuthenticated">
         <b-nav-item>
           <router-link :to="{ name: 'login_path', params: {} }">
             Join / Login
           </router-link>
         </b-nav-item>
-      </div>
-      <div v-else>
+      </template>
+      <template v-else>
         <b-nav-item>
           <router-link :to="{ name: 'my_account_path', params: {} }">
             My Account
@@ -54,12 +56,15 @@
         <b-nav-item>
           <a @click="onLogout">Sign Out</a>
         </b-nav-item>
-      </div>
-    </b-nav>
+      </template>
+    </b-navbar-nav>
   </b-navbar>
 </template>
 
 <script>
+import router from '@/router.js'
+import movies from '@/requests/movies.js'
+
 export default {
   data() {
     return {
@@ -75,9 +80,16 @@ export default {
     onLogout() {
       this.$store.dispatch('UserInfoStore/logout')
     },
-    movieSearch() {
-      movies.searchMovie(this.searchInput)
+    searchClick() {
+      movies.searchMovies(this.searchInput)
         .then(response => {
+          this.$store.dispatch('MovieStore/searchMovies', response.data)
+          router.replace({ name: 'search_movies_path' })
+
+          this.searchInput = ''
+        })
+        .catch(err => {
+          console.log(err)
         })
     }
   }
