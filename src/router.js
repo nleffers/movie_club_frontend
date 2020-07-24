@@ -83,7 +83,10 @@ const router = new VueRouter({
     {
       path: '/search',
       component: SearchMovies,
-      name: 'search_movies_path'
+      name: 'search_movies_path',
+      props: (route) => ({
+        ...route.params
+      })
     },
     {
       path: '/user/:id',

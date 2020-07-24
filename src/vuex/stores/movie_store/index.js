@@ -14,7 +14,6 @@ const MovieStore = {
         user_rating: '',
         reviews: []
       },
-      searchResults: [],
       nowPlaying: [],
       popular: [],
       topRated: [],

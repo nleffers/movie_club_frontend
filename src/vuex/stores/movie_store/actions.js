@@ -13,9 +13,6 @@ const actions = {
       console.log(err)
     })
   },
-  searchMovies({ commit }, movies) {
-    commit('searchMovies', movies)
-  },
   clearMovie({ commit }) {
     commit('clearMovie')
   },

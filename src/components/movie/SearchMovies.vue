@@ -25,13 +25,11 @@
 import MovieRow from '../shared/MovieRow.vue'
 
 export default {
+  props: {
+    movies: Array
+  },
   components: {
     MovieRow
-  },
-  computed: {
-    movies() {
-      return this.$store.getters['MovieStore/searchResults']
-    }
   }
 }
 </script>

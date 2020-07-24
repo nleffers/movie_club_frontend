@@ -83,8 +83,7 @@ export default {
     searchClick() {
       movies.searchMovies(this.searchInput)
         .then(response => {
-          this.$store.dispatch('MovieStore/searchMovies', response.data)
-          router.replace({ name: 'search_movies_path' })
+          router.push({ name: 'search_movies_path', params: { movies: response.data } })
 
           this.searchInput = ''
         })
