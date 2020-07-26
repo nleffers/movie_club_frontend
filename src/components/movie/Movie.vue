@@ -1,11 +1,6 @@
 <template>
   <div>
-    <hr>
-    <h1>{{ movie.title }}</h1>
-    <movie-rating
-      v-bind.sync="movie"
-      :currentUserId="currentUserId"
-    ></movie-rating>
+    <movie-info :movie="movie" />
     <create-review
       v-if="currentUserId"
       :imdbId="movie.imdb_id"
@@ -27,22 +22,22 @@
 
 <script>
 import movies from '@/requests/movies.js'
+import MovieInfo from './movie_components/MovieInfo.vue'
 import CreateReview from './movie_components/CreateReview.vue'
 import ShowReview from './movie_components/ShowReview.vue'
 import EditReview from './movie_components/EditReview.vue'
-import MovieRating from './movie_components/MovieRating.vue'
 
 export default {
   props: {
     id: [Number, String]
   },
   components: {
+    MovieInfo,
     CreateReview,
     EditReview,
     ShowReview,
-    MovieRating
   },
-  created() {
+  mounted() {
     this.getMovie()
   },
   computed: {

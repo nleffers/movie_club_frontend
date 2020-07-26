@@ -13,8 +13,14 @@ const actions = {
       console.log(err)
     })
   },
+  movieSearch({ commit }, movies) {
+    commit('movieSearch', movies)
+  },
   clearMovie({ commit }) {
     commit('clearMovie')
+  },
+  clearMovies({ commit }) {
+    commit('clearMovies')
   },
   addToMovieReviews({ commit }, review) {
     commit('addToMovieReviews', review)

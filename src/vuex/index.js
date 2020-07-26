@@ -34,7 +34,12 @@ const store = new Vuex.Store({
   },
   plugins: [
     vuexUserInfoHistory.plugin
-  ]
+  ],
+  getters: {
+    currentRoute(state) {
+      return state.route.name
+    }
+  }
 })
 
 export default store

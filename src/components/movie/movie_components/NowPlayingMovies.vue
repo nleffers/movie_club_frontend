@@ -1,23 +1,11 @@
 <template>
   <div class="now-playing-wrapper">
-    <table>
-      <thead>
-        <tr>
-          <th></th>
-          <th>Title</th>
-          <th>Average Rating</th>
-        </tr>
-      </thead>
-      <tbody>
-        <movie-row
-          v-for="(movie, index) in movies"
-          :movie="movie"
-          :key="index"
-          :ref="'user-movie-' + index"
-        >
-        </movie-row>
-      </tbody>
-    </table>
+    <movie-row
+      v-for="(movie, index) in movies"
+      :movie="movie"
+      :key="index"
+      :ref="'user-movie-' + index"
+    />
   </div>
 </template>
 

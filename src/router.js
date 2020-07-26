@@ -11,7 +11,7 @@ const MyMovies = () => import('./components/user/UserMovies.vue')
 const User = () => import('./components/user/User.vue')
 const Movie = () => import('./components/movie/Movie.vue')
 const Movies = () => import('./components/movie/Movies.vue')
-const SearchMovies = () => import('./components/movie/SearchMovies.vue')
+const MovieSearch = () => import('./components/movie/MovieSearch.vue')
 
 const authGuard = (to, from, next) => {
   if (isAuthenticated()) {
@@ -82,8 +82,8 @@ const router = new VueRouter({
     },
     {
       path: '/search',
-      component: SearchMovies,
-      name: 'search_movies_path',
+      component: MovieSearch,
+      name: 'movie_search_path',
       props: (route) => ({
         ...route.params
       })

@@ -2,6 +2,7 @@ import _ from 'lodash'
 
 const getters = {
   movie: state => state.movie,
+  searchResults: state => state.searchResults,
   topRated: state => state.topRated,
   popular: state => state.popular,
   nowPlaying: state => state.nowPlaying,

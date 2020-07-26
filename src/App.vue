@@ -11,10 +11,6 @@
 import NavBar from './components/navigation/NavBar.vue'
 
 export default {
-  data() {
-    return {
-    }
-  },
   components: {
     NavBar
   }
@@ -28,5 +24,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.container-fluid {
+  margin: auto;
+  width: 60% !important;
+  min-width: 1000px;
 }
 </style>

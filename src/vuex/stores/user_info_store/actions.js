@@ -68,7 +68,7 @@ const actions = {
   setTokenExpiration({ commit }, tokenExpiration) {
     commit('setTokenExpiration', tokenExpiration)
   },
-  logout ({ commit, state, dispatch }, payload = { msgType: 'success' }) {
+  logout ({ commit, state, dispatch, rootGetters }, payload = { msgType: 'success' }) {
     const snotify = Vue.prototype.$snotify
     const message = payload.message || 'Logged Out Successfully'
 
@@ -76,7 +76,9 @@ const actions = {
     .then(response => {
       commit('clearUserData')
       snotify[payload.msgType](message)
-      router.replace({ name: 'root_path' })
+      if (rootGetters['currentRoute'] !== 'root_path') {
+        router.replace({ name: 'root_path' })
+      }
     })
     .catch(e => {
       snotify.error(`There was an error logging you out: ${e}`)

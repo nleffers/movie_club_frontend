@@ -10,6 +10,7 @@
 
 import Vue from 'vue/dist/vue.esm'
 import BootstrapVue from 'bootstrap-vue'
+import { sync } from 'vuex-router-sync'
 import store from './vuex'
 import router from './router.js'
 import App from './App.vue'
@@ -18,6 +19,8 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
+
+const unsync = sync(store, router)
 
 const options = {
   toast: {

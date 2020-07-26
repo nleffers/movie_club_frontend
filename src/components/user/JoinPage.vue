@@ -106,7 +106,21 @@ export default {
 </script>
 
 <style scoped>
-.row {
-  margin-top: 15%;
+.form-group {
+  display: inline;
+}
+
+.form-group label {
+  text-align: right;
+  clear: both;
+  float: left;
+  margin-right: 15px;
+  margin-top: 7px;
+}
+
+.form-group input {
+  width: 85%;
+  margin-top: 1px;
+  float: right;
 }
 </style>

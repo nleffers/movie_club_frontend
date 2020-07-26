@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-md-8 offset-md-2">
+    <div class="col-md-10 offset-md-1">
       <form @submit.prevent="submitJoin">
         <div class="form-group justify-content-center">
           <label for="username-field">Username</label>
@@ -8,7 +8,6 @@
             type="text"
             class="form-control"
             id="username-field"
-            placeholder="Username"
             :value="username"
             @input="editUserField($event.target.value, 'setUsername')"
           />
@@ -19,7 +18,6 @@
             type="text"
             class="form-control"
             id="email-field"
-            placeholder="Email"
             :value="email"
             @input="editUserField($event.target.value, 'setEmail')"
           />
@@ -30,7 +28,6 @@
             type="text"
             class="form-control"
             id="first-name-field"
-            placeholder="First Name"
             :value="firstName"
             @input="editUserField($event.target.value, 'setFirstName')"
           />
@@ -41,7 +38,6 @@
             type="text"
             class="form-control"
             id="last-name-field"
-            placeholder="Last Name"
             :value="lastName"
             @input="editUserField($event.target.value, 'setLastName')"
           />
@@ -56,6 +52,7 @@
             @input="editUserField($event.target.checked, 'setEmailNotifications')"
           />
         </div>
+        <hr>
         <button
           type="submit"
           class="btn btn-primary"
@@ -120,3 +117,23 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.form-group {
+  display: inline;
+}
+
+.form-group label {
+  text-align: right;
+  clear: both;
+  float: left;
+  margin-right: 15px;
+  margin-top: 7px;
+}
+
+.form-group input {
+  width: 85%;
+  margin-top: 1px;
+  float: right;
+}
+</style>

@@ -10,6 +10,9 @@ const mutations = {
     state.topRated = payload.top_rated
     state.upcoming = payload.upcoming
   },
+  movieSearch(state, payload) {
+    state.searchResults = payload
+  },
   clearMovie(state) {
     state.movie = {}
   },

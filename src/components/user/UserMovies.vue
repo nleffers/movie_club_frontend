@@ -1,26 +1,11 @@
 <template>
-  <div>
-    <div class="content-wrapper">
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Title</th>
-            <th>Voting Average</th>
-            <th>User Rating</th>
-          </tr>
-        </thead>
-        <tbody>
-          <movie-row
-            v-for="(movie, index) in movies"
-            :movie="movie"
-            :key="index"
-            :ref="'user-movie-' + index"
-          >
-          </movie-row>
-        </tbody>
-      </table>
-    </div>
+  <div class="movies-wrapper">
+    <movie-row
+      v-for="(movie, index) in movies"
+      :movie="movie"
+      :key="index"
+      :ref="'user-movie-' + index"
+    />
   </div>
 </template>
 
@@ -37,7 +22,7 @@ export default {
       movies: []
     }
   },
-  created() {
+  mounted() {
     this.getUserMovies()
   },
   computed: {
