@@ -1,31 +1,29 @@
 <template>
   <div class="home-page">
-    <youtube
-      v-if="currentTrailerSource"
-      :video-id="currentTrailerSource"
-      @playing="playing"
-      @ended="ended"
-    />
-    <div class="trailers-column">
-      <div
-        v-for="(trailer, index) in trailersNotPlaying"
-        :key="index"
-        :ref="'trailer-' + index"
-        @click="changeTrailerManually(trailer.id)"
-      >
-        <div class="trailer-not-playing-row">
-          <p>{{ trailer.title }}</p>
-          <p>{{ trailer.trailer.name }}</p>
-        </div>
-      </div>
+    <div class="trailer-section">
+      <youtube
+        v-if="currentTrailerSource"
+        class="trailer"
+        :video-id="currentTrailerSource"
+        @playing="playing"
+        @ended="ended"
+      />
+      <trailer-column
+        :trailers="trailersNotPlaying"
+        @changeTrailerManually="changeTrailerManually($event)"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import movies from '@/requests/movies.js'
+import TrailerColumn from './home/TrailerColumn.vue'
 
 export default {
+  components: {
+    TrailerColumn
+  },
   data() {
     return {
       movieTrailers: [],
@@ -43,7 +41,7 @@ export default {
       return this.currentTrailer && this.currentTrailer.trailer && this.currentTrailer.trailer.source || null
     },
     trailersNotPlaying() {
-      return this.movieTrailers.filter(trailer => trailer.id !== this.currentTrailer.id)
+      return this.movieTrailers.slice(1, -1)
     }
   },
   mounted() {
@@ -84,6 +82,16 @@ export default {
 
 <style scoped>
 .home-page {
+  display: inline-block;
+}
+
+.trailer-section {
+  width: 100%;
   display: inline-flex;
+}
+
+.trailer {
+  float: left;
+  width: 640px;
 }
 </style>
