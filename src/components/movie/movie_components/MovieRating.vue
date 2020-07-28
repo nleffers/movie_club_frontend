@@ -2,7 +2,7 @@
   <div>
     <p>Average Rating: {{ vote_average }}</p>
     <div
-      v-if="currentUserId"
+      v-if="isAuthenticated"
       class="user-rating-wrapper"
     >
       <div
@@ -96,7 +96,6 @@
         ></i>
       </div>
     </div>
-    <hr>
   </div>
 </template>
 
@@ -109,7 +108,7 @@ export default {
     vote_average: [Number, String],
     vote_count: [Number, String],
     user_rating: [Number, String],
-    currentUserId: [Number, String]
+    isAuthenticated: Boolean
   },
   computed: {
     oneStar() {

@@ -28,6 +28,7 @@
         <b-nav-form>
           <b-form-input
             v-model="searchInput"
+            @keydown.enter.native="searchClick()"
             size="sm"
             class="mr-sm-6"
             type="text"
@@ -85,6 +86,7 @@ export default {
     searchClick() {
       movies.searchMovies(this.searchInput)
         .then(response => {
+          debugger
           this.$store.dispatch(`MovieStore/movieSearch`, response.data)
 
           if (this.$route.path !== '/search') {

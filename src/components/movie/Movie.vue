@@ -1,31 +1,30 @@
 <template>
   <div>
-    <movie-info :movie="movie" />
-    <create-review
-      v-if="currentUserId"
-      :imdbId="movie.imdb_id"
-    ></create-review>
-    <template v-for="(review, index) in reviews">
-      <edit-review
-        v-if="reviewWrittenByUser(review.user_id)"
-        v-bind.sync="review"
-        :key="index"
+    <movie-info
+      :isAuthenticated="isAuthenticated"
+      :movie="movie"
+    />
+    <hr>
+    <div style="display: inline-flex;">
+      <cast-info
+        :casts="movie.casts"
+        :isAuthenticated="isAuthenticated"
       />
-      <show-review
-        v-else
-        :review="review"
-        :key="index"
+      <create-review
+        :imdbId="movie.imdb_id"
+        :isAuthenticated="isAuthenticated"
       />
-    </template>
+      <reviews-form :reviews="reviews" />
+    </div>
   </div>
 </template>
 
 <script>
 import movies from '@/requests/movies.js'
 import MovieInfo from './movie_components/MovieInfo.vue'
+import CastInfo from './movie_components/CastInfo.vue'
 import CreateReview from './movie_components/CreateReview.vue'
-import ShowReview from './movie_components/ShowReview.vue'
-import EditReview from './movie_components/EditReview.vue'
+import ReviewsForm from './movie_components/ReviewsForm.vue'
 
 export default {
   props: {
@@ -33,14 +32,17 @@ export default {
   },
   components: {
     MovieInfo,
+    CastInfo,
     CreateReview,
-    EditReview,
-    ShowReview,
+    ReviewsForm
   },
   mounted() {
     this.getMovie()
   },
   computed: {
+    isAuthenticated() {
+      return this.$store.getters['UserInfoStore/isAuthenticated']
+    },
     currentUserId() {
       return this.$store.getters[`UserInfoStore/id`]
     },
@@ -57,9 +59,6 @@ export default {
       .then(response => {
         this.$store.dispatch(`MovieStore/setMovie`, response.data)
       })
-    },
-    reviewWrittenByUser(userId) {
-      return this.currentUserId == userId
     }
   },
   destroyed() {
@@ -67,3 +66,6 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+<style>
