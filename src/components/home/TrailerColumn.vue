@@ -31,12 +31,11 @@ export default {
 .trailers-column {
   cursor: pointer;
   height: 360px;
-  overflow-y: scroll;
+  float: right;
   padding-left: 20px;
   padding-right: 20px;
   text-align: left;
-  max-width: 350px;
-  width: 100%;
+  width: calc(100% - 640px);
 }
 
 .trailer-not-playing-row {
