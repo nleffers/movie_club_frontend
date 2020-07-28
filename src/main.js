@@ -10,6 +10,7 @@
 
 import Vue from 'vue/dist/vue.esm'
 import BootstrapVue from 'bootstrap-vue'
+import VueYouTubeEmbed from 'vue-youtube-embed'
 import { sync } from 'vuex-router-sync'
 import store from './vuex'
 import router from './router.js'
@@ -29,6 +30,7 @@ const options = {
 }
 
 Vue.use(BootstrapVue)
+Vue.use(VueYouTubeEmbed)
 Vue.use(Snotify, options)
 
 const app = new Vue({

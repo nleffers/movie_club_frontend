@@ -1,14 +1,12 @@
 <template>
   <div class="nav-bar">
     <b-navbar toggleable="md">
-      <router-link :to="{ name: 'root_path', params: {} }">
-        Movie Club
-      </router-link>
-
-      <b-nav
-        justified
-        class="middle-nav"
-      >
+      <b-nav class="left-nav">
+        <b-nav-item>
+          <router-link :to="{ name: 'root_path', params: {} }">
+            Movie Club
+          </router-link>
+        </b-nav-item>
         <b-nav-item v-if="isAuthenticated">
           <router-link :to="{ name: 'my_movies_path', params: {} }">
             My Movies
@@ -21,6 +19,12 @@
             </router-link>
           </b-dropdown-item>
         </b-nav-item-dropdown>
+      </b-nav>
+
+      <b-nav
+        justified
+        class="middle-nav"
+      >
         <b-nav-form>
           <b-form-input
             v-model="searchInput"

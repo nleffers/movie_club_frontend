@@ -3,6 +3,9 @@
 import apiInstance from '../axios/axios-backend.js'
 
 export default {
+  getHomePage() {
+    return apiInstance.get('/home')
+  },
   newMovie() {
     return apiInstance.get('/movies/new')
   },
