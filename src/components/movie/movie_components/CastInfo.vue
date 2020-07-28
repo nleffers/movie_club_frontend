@@ -12,8 +12,8 @@
           No Picture
         </template>
       </div>
-      <div class="character-name">{{ cast.character }}</div>
       <div class="actor-name">{{ cast.name }}</div>
+      <div class="character-name">{{ cast.character }}</div>
     </div>
   </div>
 </template>

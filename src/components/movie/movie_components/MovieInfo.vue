@@ -7,16 +7,16 @@
     </div>
     <div class="movie-info">
       <h1>{{ movie.title }}</h1>
+      <movie-rating
+        v-bind.sync="movie"
+        :isAuthenticated="isAuthenticated"
+      />
       <p>{{ movie.overview }}</p>
       <template v-for="genre in movie.genres">
         <div class="genre">
           {{ genre.name }}
         </div>
       </template>
-      <movie-rating
-        v-bind.sync="movie"
-        :isAuthenticated="isAuthenticated"
-      />
     </div>
   </div>
 </template>

@@ -1,36 +1,42 @@
 <template>
-  <div class="reviews-form">
+  <div class="reviews-column">
     <template v-for="(review, index) in reviews">
-      <edit-review
-        v-if="reviewWrittenByUser(review.user_id)"
-        v-bind.sync="review"
-        :key="index"
-      />
-      <show-review
-        v-else
+      <review-form
+        :currentUserId="currentUserId"
         :review="review"
         :key="index"
       />
+      <hr>
     </template>
   </div>
 </template>
 
 <script>
-import EditReview from './EditReview.vue'
-import ShowReview from './ShowReview.vue'
+import ReviewForm from './ReviewForm.vue'
 
 export default {
   props: {
+    currentUserId: Number,
     reviews: Array
   },
   components: {
-    EditReview,
-    ShowReview
+    ReviewForm
   },
-  computed: {
+  methods: {
     reviewWrittenByUser(userId) {
-      return this.currentUserId == userId
+      this.currentUserId == userId
     }
   }
 }
 </script>
+
+<style scoped>
+.reviews-column {
+  height: 500px;
+  margin-left: 1.5%;
+  margin-right: 1.5%;
+  overflow-y: scroll;
+  padding-top: 50px;
+  width: 30%;
+}
+</style>

@@ -1,10 +1,11 @@
 <template>
-  <div>
-    <p>Average Rating: {{ vote_average }}</p>
+  <div class="movie-rating">
+    <div class="average-rating">Average Rating: {{ vote_average }}</div>
     <div
       v-if="isAuthenticated"
       class="user-rating-wrapper"
     >
+      User Rating: 
       <div
         class="user-rating"
         :class="{ 'checked': oneStar }"
@@ -163,8 +164,21 @@ export default {
 </script>
 
 <style scoped>
-.checked {
-  color: orange;
+.movie-rating {
+  display: inline-flex;
+  width: 600px;
+}
+
+.average-rating {
+  border-right: 1px solid black;
+  margin-right: 5px;
+  padding-right: 25px;
+  text-align: right;
+  width: 50%;
+}
+
+.user-rating-wrapper {
+  width: 50%;
 }
 
 .user-rating {
@@ -172,6 +186,10 @@ export default {
 }
 
 .user-rating:hover {
+  color: orange;
+}
+
+.checked {
   color: orange;
 }
 </style>

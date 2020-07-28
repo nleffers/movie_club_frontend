@@ -14,7 +14,10 @@
         :imdbId="movie.imdb_id"
         :isAuthenticated="isAuthenticated"
       />
-      <reviews-form :reviews="reviews" />
+      <reviews-form
+        :currentUserId="currentUserId"
+        :reviews="reviews"
+      />
     </div>
   </div>
 </template>
