@@ -59,7 +59,7 @@ const router = new VueRouter({
       props: true
     },
     {
-      path: '/?',
+      path: '/search',
       component: MovieSearch,
       name: 'movie_search_path',
       props: (route) => ({
