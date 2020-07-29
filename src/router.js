@@ -13,31 +13,9 @@ const Movie = () => import('./components/movie/Movie.vue')
 const Movies = () => import('./components/movie/Movies.vue')
 const MovieSearch = () => import('./components/movie/MovieSearch.vue')
 
-const authGuard = (to, from, next) => {
-  if (isAuthenticated()) {
-    next()
-  } else {
-    const loginPathArgs = { name: 'login_path' }
-    next(loginPathArgs)
-  }
-}
-
-const autoLogin = (to, from, next) => {
-  if (isAuthenticated()) {
-    const rootPathArgs = { name: 'root_path' }
-    next(rootPathArgs)
-  } else {
-    next()
-  }
-}
-
 const badLink = (to, from, next) => {
   const rootPathArgs = { name: 'root_path' }
   next(rootPathArgs)
-}
-
-const isAuthenticated = () => {
-  return store.getters['UserInfoStore/isAuthenticated']
 }
 
 const router = new VueRouter({
@@ -81,7 +59,7 @@ const router = new VueRouter({
       props: true
     },
     {
-      path: '/search',
+      path: '/?',
       component: MovieSearch,
       name: 'movie_search_path',
       props: (route) => ({

@@ -39,6 +39,8 @@
 </template>
 
 <script>
+import router from '@/router.js'
+
 export default {
   data() {
     return {
@@ -53,6 +55,7 @@ export default {
         password: this.password
       }
       this.$store.dispatch('UserInfoStore/login', formData)
+      router.replace({ name: 'root_path' })
     }
   }
 }

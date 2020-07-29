@@ -40,10 +40,46 @@
       <b-navbar-nav class="ml-auto right-side">
         <template v-if="!isAuthenticated">
           <b-nav-item>
-            <router-link :to="{ name: 'login_path', params: {} }">
-              Join / Login
-            </router-link>
+            <div
+              class="log-in-option"
+              @click.prevent="toggleLogInMenu"
+            >
+              Join / Log In
+            </div>
           </b-nav-item>
+          <div
+            v-if="showLogInMenu"
+            ref="logInMenu"
+            class="log-in-menu-wrapper"
+            tabindex="-1"
+          >
+            <form @submit.prevent="submitLogin">
+              <div class="form-group justify-content-center">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="username-field"
+                  placeholder="Enter Username"
+                  v-model="username"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password-field"
+                  placeholder="Enter Password"
+                  v-model="password"
+                />
+              </div>
+              <button
+                type="submit"
+                class="btn btn-primary"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
         </template>
         <template v-else>
           <b-nav-item>
@@ -71,7 +107,10 @@ import movies from '@/requests/movies.js'
 export default {
   data() {
     return {
-      searchInput: ''
+      username: '',
+      password: '',
+      searchInput: '',
+      showLogInMenu: false
     }
   },
   computed: {
@@ -85,19 +124,33 @@ export default {
     },
     searchClick() {
       movies.searchMovies(this.searchInput)
-        .then(response => {
-          debugger
-          this.$store.dispatch(`MovieStore/movieSearch`, response.data)
+      .then(response => {
+        this.searchInput = ''
+        this.$store.dispatch(`MovieStore/movieSearch`, response.data)
+        router.replace({ name: 'movie_search_path' })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
+    submitLogin() {
+      const formData = {
+        username: this.username,
+        password: this.password
+      }
+      this.username = ''
+      this.password = ''
+      this.$store.dispatch('UserInfoStore/login', formData)
+      this.showLogInMenu = false
+    },
+    toggleLogInMenu() {
+      this.showLogInMenu = !this.showLogInMenu
 
-          if (this.$route.path !== '/search') {
-            router.replace({ name: 'movie_search_path' })
-          }
-
-          this.searchInput = ''
+      if (this.showLogInMenu) {
+        this.$nextTick(() => {
+          this.$refs.logInMenu.focus()
         })
-        .catch(err => {
-          console.log(err)
-        })
+      }
     }
   }
 }
@@ -109,7 +162,28 @@ export default {
   white-space: nowrap;
 }
 
-.sign-out {
+.log-in-option, .sign-out {
   color: #007bff;
+}
+
+.log-in-menu-wrapper {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  width: 200px;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  right: 10px;
+  top: 50px;
+}
+
+.log-in-menu-wrapper input {
+  margin-left: 2px;
+  margin-top: 2px;
+}
+
+.log-in-menu-wrapper button {
+  margin-bottom: 5px;
 }
 </style>

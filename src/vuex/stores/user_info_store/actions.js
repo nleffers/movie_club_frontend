@@ -14,7 +14,6 @@ const actions = {
       commit('setUsername', res.data.username)
       commit('setToken', res.data.token)
       commit('setTokenExpiration', expirationDate)
-      router.replace({ name: 'root_path' })
     })
     .catch(e => {
       snotify.error('Invalid Username or Password. Please try again.')
