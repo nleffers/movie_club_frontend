@@ -14,6 +14,7 @@
       </div>
       <div class="actor-name">{{ cast.name }}</div>
       <div class="character-name">{{ cast.character }}</div>
+      <hr>
     </div>
   </div>
 </template>
@@ -29,15 +30,17 @@ export default {
 
 <style scoped>
 .cast-info-column {
-  width: 30%;
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 500px;
   margin-left: 1.5%;
   margin-right: 1.5%;
-  height: 500px;
   overflow-y: scroll;
+  width: 30%;
 }
 
 .character-info {
-  padding: 2px;
+  padding: 5px;
   display: inline-flex;
   width: 100%;
 }
@@ -49,12 +52,14 @@ export default {
 }
 
 .character-name {
+  margin: auto;
   padding: 1px;
   width: calc(50% - 47px);
 }
 
 .actor-name {
   float: right;
+  margin: auto;
   padding: 1px;
   width: calc(50% - 47px);
 }

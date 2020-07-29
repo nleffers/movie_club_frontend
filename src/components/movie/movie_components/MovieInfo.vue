@@ -12,11 +12,9 @@
         :isAuthenticated="isAuthenticated"
       />
       <p>{{ movie.overview }}</p>
-      <template v-for="genre in movie.genres">
-        <div class="genre">
-          {{ genre.name }}
-        </div>
-      </template>
+      <div class="genre">
+        {{ movieGenres }}
+      </div>
     </div>
   </div>
 </template>
@@ -31,6 +29,11 @@ export default {
   },
   components: {
     MovieRating
+  },
+  computed: {
+    movieGenres() {
+      return this.movie && this.movie.genres && this.movie.genres.map(genre => genre.name).join(' | ')
+    }
   }
 }
 </script>

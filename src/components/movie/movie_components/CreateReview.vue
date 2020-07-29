@@ -23,7 +23,7 @@
     <template v-else>
       <div class="log-in">
         <router-link :to="{ name: 'login_path', params: {} }">
-          Sign up or log in to write a review!
+          Sign in to write a review!
         </router-link>
       </div>
     </template>
@@ -63,11 +63,12 @@ export default {
 
 <style scoped>
 .create-review-column {
+  border: 1px solid black;
+  border-radius: 5px;
   height: 500px;
   margin-left: 1.5%;
   margin-right: 1.5%;
   overflow-y: scroll;
-  padding-top: 50px;
   width: 30%;
 }
 

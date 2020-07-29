@@ -97,6 +97,14 @@
         ></i>
       </div>
     </div>
+    <div
+      v-else
+      class="user-rating-wrapper"
+    >
+      <router-link :to="{ name: 'login_path', params: {} }">
+        Sign in to rate the movie!
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -167,6 +175,7 @@ export default {
 .movie-rating {
   display: inline-flex;
   width: 600px;
+  margin-bottom: 15px;
 }
 
 .average-rating {
