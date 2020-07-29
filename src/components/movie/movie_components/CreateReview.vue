@@ -69,6 +69,7 @@ export default {
   margin-left: 1.5%;
   margin-right: 1.5%;
   overflow-y: scroll;
+  padding: 15px;
   width: 30%;
 }
 

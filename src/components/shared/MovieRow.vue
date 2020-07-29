@@ -22,7 +22,7 @@
           </div>
           <template v-if="isAuthenticated">
             <div id="movie-user-rating">
-              User Rating: {{ movie.user_rating }}
+              User Rating: {{ userRating }}
             </div>
           </template>
         </div>
@@ -40,6 +40,9 @@ export default {
   computed: {
     isAuthenticated() {
       return this.$store.getters['UserInfoStore/isAuthenticated']
+    },
+    userRating() {
+      return this.movie.user_rating || 'N/A'
     }
   },
   filters: {

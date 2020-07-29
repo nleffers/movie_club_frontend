@@ -39,7 +39,7 @@ export default {
     CreateReview,
     ReviewsForm
   },
-  mounted() {
+  beforeMount() {
     this.getMovie()
   },
   computed: {

@@ -14,14 +14,25 @@ const vuexUserInfoHistory = new VuexPersistence({
       UserInfoStore: {
         id: state.UserInfoStore.id,
         username: state.UserInfoStore.username,
-        email: state.UserInfoStore.email,
-        firstName: state.UserInfoStore.firstName,
-        lastName: state.UserInfoStore.lastName,
-        emailNotifications: state.UserInfoStore.emailNotifications,
-        movies: state.UserInfoStore.movies,
-        reviews: state.UserInfoStore.reviews,
         token: state.UserInfoStore.token,
         tokenExpiration: state.UserInfoStore.tokenExpiration
+      }
+    })
+  }
+})
+
+const vuexMovieSearchResults = new VuexPersistence({
+  storage: window.localStorage,
+  key: 'movie_search_results',
+  reducer: state => {
+    return ({
+      MovieStore: {
+        movie: state.MovieStore.movie,
+        searchResults: state.MovieStore.searchResults,
+        topRated: state.MovieStore.topRated,
+        popular: state.MovieStore.popular,
+        nowPlaying: state.MovieStore.nowPlaying,
+        reviews: state.MovieStore.reviews
       }
     })
   }
@@ -33,7 +44,8 @@ const store = new Vuex.Store({
     UserInfoStore
   },
   plugins: [
-    vuexUserInfoHistory.plugin
+    vuexUserInfoHistory.plugin,
+    vuexMovieSearchResults.plugin
   ],
   getters: {
     currentRoute(state) {

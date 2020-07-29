@@ -26,7 +26,7 @@
       class="show-review"
     >
       <div class="review-title">{{ review.title }}</div>
-      <div class="review-blog">{{ review.blog }}</p></div>
+      <div class="review-blog">{{ review.blog }}</div>
     </div>
     <div
       v-if="userIsOwner"
@@ -36,7 +36,7 @@
       Edit
     </div>
     <div class="last-edited-at">
-      {{ lastEditedAt }}
+      By {{ review.written_by_username }} at {{ review.created_at | localTime }}
     </div>
   </div>
 </template>
@@ -58,12 +58,14 @@ export default {
       userEditing: false
     }
   },
+  filters: {
+    localTime(value) {
+      return new Date(value).toLocaleDateString()
+    }
+  },
   computed: {
     userIsOwner() {
       return this.review && this.currentUserId === this.review.user_id
-    },
-    lastEditedAt() {
-      return this.review && (this.review.updated_at ? this.review.updated_at : this.review.created_at)
     }
   },
   methods: {

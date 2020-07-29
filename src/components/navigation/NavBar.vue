@@ -28,11 +28,16 @@
         <b-nav-form>
           <b-form-input
             v-model="searchInput"
-            @keydown.enter.native="searchClick()"
             size="sm"
             class="mr-sm-6"
             type="text"
             placeholder="Search"
+          />
+          <b-button
+            size="sm"
+            class="search-button"
+            type="submit"
+            @click.prevent="searchClick"
           />
         </b-nav-form>
       </b-nav>
@@ -124,14 +129,14 @@ export default {
     },
     searchClick() {
       movies.searchMovies(this.searchInput)
-      .then(response => {
-        this.searchInput = ''
-        this.$store.dispatch(`MovieStore/movieSearch`, response.data)
-        router.replace({ name: 'movie_search_path' })
-      })
-      .catch(err => {
-        console.log(err)
-      })
+        .then(response => {
+          this.$store.dispatch(`MovieStore/movieSearch`, response.data)
+          this.searchInput = ''
+          router.replace({ name: 'movie_search_path' })
+        })
+        .catch(err => {
+          console.log(err)
+        })
     },
     submitLogin() {
       const formData = {
@@ -185,5 +190,9 @@ export default {
 
 .log-in-menu-wrapper button {
   margin-bottom: 5px;
+}
+
+.search-button {
+  visibility: hidden;
 }
 </style>
