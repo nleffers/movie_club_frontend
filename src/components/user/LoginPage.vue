@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="log-in-page">
     <div class="col-md-8 offset-md-2">
       <div>
         <router-link :to="{ name: 'join_path', params: {} }">
@@ -8,7 +8,6 @@
       </div>
       <form @submit.prevent="submitLogin">
         <div class="form-group justify-content-center">
-          <label for="username-field">Username</label>
           <input
             type="text"
             class="form-control"
@@ -18,7 +17,6 @@
           />
         </div>
         <div class="form-group">
-          <label for="password-field">Password</label>
           <input
             type="password"
             class="form-control"
@@ -62,21 +60,21 @@ export default {
 </script>
 
 <style scoped>
+.log-in-page {
+  margin: auto;
+  width: 80%;
+}
+
 .form-group {
   display: inline;
 }
 
-.form-group label {
-  text-align: right;
-  clear: both;
-  float: left;
-  margin-right: 15px;
-  margin-top: 7px;
+.form-group input {
+  margin-top: 5px;
+  float: right;
 }
 
-.form-group input {
-  width: 85%;
-  margin-top: 1px;
-  float: right;
+button {
+  margin-top: 10px;
 }
 </style>

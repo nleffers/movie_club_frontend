@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="join-page">
     <div class="col-md-8 offset-md-2">
       <div>
         <router-link :to="{ name: 'login_path', params: {} }">
@@ -90,6 +90,11 @@ export default {
 </script>
 
 <style scoped>
+.join-page {
+  margin: auto;
+  width: 80%;
+}
+
 .form-group {
   display: inline;
 }
