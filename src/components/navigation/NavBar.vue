@@ -59,6 +59,12 @@
             tabindex="-1"
           >
             <form @submit.prevent="submitLogin">
+              <router-link
+                :to="{ name: 'join_path', params: {} }"
+                @click="toggleLogInMenu"
+              >
+                New? Join Now!
+              </router-link>
               <div class="form-group justify-content-center">
                 <input
                   type="text"

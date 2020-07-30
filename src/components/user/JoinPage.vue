@@ -8,7 +8,6 @@
       </div>
       <form @submit.prevent="submitJoin">
         <div class="form-group justify-content-center">
-          <label for="username-field">Username</label>
           <input
             type="text"
             class="form-control"
@@ -18,7 +17,6 @@
           />
         </div>
         <div class="form-group">
-          <label for="password-field">Password</label>
           <input
             type="password"
             class="form-control"
@@ -28,7 +26,6 @@
           />
         </div>
         <div class="form-group">
-          <label for="email-field">Email</label>
           <input
             type="text"
             class="form-control"
@@ -38,7 +35,6 @@
           />
         </div>
         <div class="form-group">
-          <label for="first-name-field">First Name</label>
           <input
             type="text"
             class="form-control"
@@ -48,22 +44,12 @@
           />
         </div>
         <div class="form-group">
-          <label for="last-name-field">Last Name</label>
           <input
             type="text"
             class="form-control"
             id="last-name-field"
             placeholder="Last Name"
             v-model="lastName"
-          />
-        </div>
-        <div class="form_option--check-block">
-          <label for="email-notifications-field">Email Notifications</label>
-          <input
-            type="checkbox"
-            class="form-control"
-            id="email-notifications-field"
-            v-model="emailNotifications"
           />
         </div>
         <button
@@ -85,8 +71,7 @@ export default {
       password: '',
       email: '',
       firstName: '',
-      lastName: '',
-      emailNotifications: false
+      lastName: ''
     }
   },
   methods: {
@@ -96,8 +81,7 @@ export default {
         password: this.password,
         email: this.email,
         first_name: this.firstName,
-        last_name: this.lastName,
-        email_notifications: this.emailNotifications
+        last_name: this.lastName
       }
       this.$store.dispatch('UserInfoStore/createAndLogin', formData)
     }
@@ -110,17 +94,12 @@ export default {
   display: inline;
 }
 
-.form-group label {
-  text-align: right;
-  clear: both;
-  float: left;
-  margin-right: 15px;
-  margin-top: 7px;
+.form-group input {
+  margin-top: 5px;
+  float: right;
 }
 
-.form-group input {
-  width: 85%;
-  margin-top: 1px;
-  float: right;
+button {
+  margin-top: 10px;
 }
 </style>
