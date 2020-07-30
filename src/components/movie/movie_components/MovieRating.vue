@@ -194,10 +194,6 @@ export default {
   display: inline-block;
 }
 
-.user-rating:hover {
-  color: orange;
-}
-
 .checked {
   color: orange;
 }
