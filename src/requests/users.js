@@ -7,7 +7,7 @@ export default {
     return apiInstance.post(`/users/login`, { login: loginObject })
   },
   logoutUser(id) {
-    return apiInstance.post(`/users/logout/${id}`)
+    return apiInstance.post(`/users/${id}/logout`)
   },
   createUser(userObject) {
     return apiInstance.post(`/users`, { user: userObject })
@@ -15,14 +15,8 @@ export default {
   getUser(id) {
     return apiInstance.get(`/users/${id}`)
   },
-  getUsers() {
-    return apiInstance.get('/users')
-  },
   updateUser(userObject) {
     return apiInstance.put(`/users/${userObject.id}`, { user: userObject })
-  },
-  deleteUser(id) {
-    return apiInstance.delete(`/users/${id}`)
   },
   getMovies(id) {
     return apiInstance.get(`/users/${id}/movies`)

@@ -10,7 +10,11 @@ const handle401 = (err) => {
   const message = 'Your session has expired, please login again'
   return new Promise((resolve, reject) => {
     if (err.response.status === 401) {
-      store.dispatch('UserInfoStore/logout', { message, msgType: 'warning' })
+      if (err.response.data.message === 'Login Rejected') {
+        store.dispatch('UserInfoStore/badLogin')
+      } else {
+        store.dispatch('UserInfoStore/logout', { message, msgType: 'warning' })
+      }
     }
     throw err
   })

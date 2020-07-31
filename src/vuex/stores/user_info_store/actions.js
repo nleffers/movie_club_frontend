@@ -15,9 +15,11 @@ const actions = {
       commit('setToken', res.data.token)
       commit('setTokenExpiration', expirationDate)
     })
-    .catch(e => {
-      snotify.error('Invalid Username or Password. Please try again.')
-    })
+    .catch(e => {})
+  },
+  badLogin ({ commit }, payload = { msgType: 'error' }) {
+    const snotify = Vue.prototype.$snotify
+    snotify['error']('Username or password invalid, please try again')
   },
   async createAndLogin ({ commit }, userData) {
     const snotify = Vue.prototype.$snotify
