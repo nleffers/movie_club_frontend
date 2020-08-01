@@ -1,33 +1,30 @@
 // user related requests can be defined here
 // note: promise/erro rhandling is done on the component, for now
-import apiInstance from '../axios/axios-backend.js'
+import instance from '../axios/axios-backend.js'
 
 export default {
   getHomePage() {
-    return apiInstance.get('/home')
+    return instance.get('/home')
   },
   newMovie() {
-    return apiInstance.get('/movies/new')
+    return instance.get('/movies/new')
   },
   createMovie(optionsObject) {
-    return apiInstance.post('/movies', { movie: optionsObject })
+    return instance.post('/movies', { movie: optionsObject })
   },
   getMovie(id) {
-    return apiInstance.get(`/movies/${id}`)
+    return instance.get(`/movies/${id}`)
   },
   getMovies() {
-    return apiInstance.get('/movies')
+    return instance.get('/movies')
   },
   getTopMovies() {
-    return apiInstance.get('/movies/top')
-  },
-  deleteMovie(id) {
-    return apiInstance.delete(`/movies/${id}`)
+    return instance.get('/movies/top')
   },
   rateMovie(ratingObject) {
-    return apiInstance.put(`/movies/${ratingObject.id}/rate`, ratingObject)
+    return instance.put(`/movies/${ratingObject.id}/rate`, ratingObject)
   },
   searchMovies(title) {
-    return apiInstance.get('/search', { params: { title: title } })
+    return instance.get('/search', { params: { title: title } })
   }
 }

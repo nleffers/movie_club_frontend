@@ -2,7 +2,7 @@ import axios from 'axios'
 import store from '@/vuex'
 import _ from 'lodash'
 
-const apiInstance = axios.create({
+const instance = axios.create({
   baseURL: process.env.VUE_APP_API_URL
 })
 
@@ -20,11 +20,16 @@ const handle401 = (err) => {
   })
 }
 
-apiInstance.interceptors.request.use(config => {
+instance.interceptors.request.use(config => {
   config.headers['X-AUTH-TOKEN'] = store.getters['UserInfoStore/token']
+  NProgress.start()
   return config
 })
 
-apiInstance.interceptors.response.use(undefined, handle401)
+instance.interceptors.response.use(undefined, handle401)
+instance.interceptors.response.use(response => {
+  NProgress.done()
+  return response
+})
 
-export default apiInstance
+export default instance

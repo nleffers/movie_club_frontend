@@ -58,6 +58,7 @@
             v-click-outside="toggleLogInMenu"
           >
             <router-link
+              class="join-link"
               :to="{ name: 'join_path', params: {} }"
               @click="toggleLogInMenu"
             >
@@ -82,7 +83,7 @@
               />
             </div>
             <div
-              class="login-in-button"
+              class="login-button"
               @click.prevent="submitLogin"
             >
               Log In
@@ -182,18 +183,31 @@ export default {
   z-index: 1;
   right: 10px;
   top: 50px;
+  padding: 5px;
 }
 
 .log-in-menu-wrapper input {
-  margin-left: 2px;
-  margin-top: 2px;
-}
-
-.log-in-menu-wrapper button {
-  margin-bottom: 5px;
+  margin: 2px;
 }
 
 .search-button {
   visibility: hidden;
+}
+
+.join-link {
+  margin: auto;
+}
+
+.login-button {
+  background: #007bff;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  margin: auto;
+  margin-bottom: 5px;
+  padding: 5px 15px;
+  text-align: center;
 }
 </style>
