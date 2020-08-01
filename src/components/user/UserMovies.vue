@@ -1,11 +1,16 @@
 <template>
   <div class="movies-wrapper">
-    <movie-row
-      v-for="(movie, index) in movies"
-      :movie="movie"
-      :key="index"
-      :ref="'user-movie-' + index"
-    />
+    <div v-if="movies.length > 0">
+      <movie-row
+        v-for="(movie, index) in movies"
+        :movie="movie"
+        :key="index"
+        :ref="'user-movie-' + index"
+      />
+    </div>
+    <div v-else>
+      <h3>Movies You Rate Will Appear Here!</h3>
+    </div>
   </div>
 </template>
 
