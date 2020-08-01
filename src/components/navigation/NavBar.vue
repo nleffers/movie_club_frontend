@@ -12,13 +12,11 @@
             My Movies
           </router-link>
         </b-nav-item>
-        <b-nav-item-dropdown text="Browse">
-          <b-dropdown-item>
-            <router-link :to="{ name: 'movies_path', params: {} }">
-              Movies
-            </router-link>
-          </b-dropdown-item>
-        </b-nav-item-dropdown>
+        <b-nav-item>
+          <router-link :to="{ name: 'movies_path', params: {} }">
+            Movies
+          </router-link>
+        </b-nav-item>
       </b-nav>
 
       <b-nav
@@ -47,7 +45,7 @@
           <b-nav-item>
             <div
               class="log-in-option"
-              @click.prevent="toggleLogInMenu"
+              @click.stop.prevent="toggleLogInMenu"
             >
               Join / Log In
             </div>
@@ -57,39 +55,38 @@
             ref="logInMenu"
             class="log-in-menu-wrapper"
             tabindex="-1"
+            v-click-outside="toggleLogInMenu"
           >
-            <form @submit.prevent="submitLogin">
-              <router-link
-                :to="{ name: 'join_path', params: {} }"
-                @click="toggleLogInMenu"
-              >
-                New? Join Now!
-              </router-link>
-              <div class="form-group justify-content-center">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="username-field"
-                  placeholder="Enter Username"
-                  v-model="username"
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="password"
-                  class="form-control"
-                  id="password-field"
-                  placeholder="Enter Password"
-                  v-model="password"
-                />
-              </div>
-              <button
-                type="submit"
-                class="btn btn-primary"
-              >
-                Submit
-              </button>
-            </form>
+            <router-link
+              :to="{ name: 'join_path', params: {} }"
+              @click="toggleLogInMenu"
+            >
+              New? Join Now!
+            </router-link>
+            <div class="form-group justify-content-center">
+              <input
+                type="text"
+                class="form-control"
+                id="username-field"
+                placeholder="Enter Username"
+                v-model="username"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="password"
+                class="form-control"
+                id="password-field"
+                placeholder="Enter Password"
+                v-model="password"
+              />
+            </div>
+            <div
+              class="login-in-button"
+              @click.prevent="submitLogin"
+            >
+              Log In
+            </div>
           </div>
         </template>
         <template v-else>
@@ -112,6 +109,7 @@
 </template>
 
 <script>
+import ClickOutside from 'vue-click-outside'
 import router from '@/router.js'
 import movies from '@/requests/movies.js'
 
@@ -123,6 +121,9 @@ export default {
       searchInput: '',
       showLogInMenu: false
     }
+  },
+  directives: {
+    ClickOutside
   },
   computed: {
     isAuthenticated() {
@@ -156,12 +157,6 @@ export default {
     },
     toggleLogInMenu() {
       this.showLogInMenu = !this.showLogInMenu
-
-      if (this.showLogInMenu) {
-        this.$nextTick(() => {
-          this.$refs.logInMenu.focus()
-        })
-      }
     }
   }
 }

@@ -30,7 +30,7 @@ import ReviewForm from './ReviewForm.vue'
 
 export default {
   props: {
-    currentUserId: Number,
+    currentUserId: [Number, String],
     reviews: Array
   },
   components: {

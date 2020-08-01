@@ -115,7 +115,6 @@ export default {
     id: [Number, String],
     imdb_id: String,
     vote_average: [Number, String],
-    vote_count: [Number, String],
     user_rating: [Number, String],
     isAuthenticated: Boolean
   },
