@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <vue-snotify />
     <div class="container-fluid">
       <nav-bar />
       <router-view />

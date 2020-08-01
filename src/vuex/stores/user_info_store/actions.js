@@ -15,11 +15,14 @@ const actions = {
       commit('setToken', res.data.token)
       commit('setTokenExpiration', expirationDate)
     })
-    .catch(e => {})
+    .catch(e => {
+      NProgress.done()
+    })
   },
   badLogin ({ commit }, payload = { msgType: 'error' }) {
     const snotify = Vue.prototype.$snotify
     snotify['error']('Username or password invalid, please try again')
+    NProgress.done()
   },
   async createAndLogin ({ commit }, userData) {
     const snotify = Vue.prototype.$snotify
@@ -35,7 +38,13 @@ const actions = {
       router.replace({ name: 'root_path' })
     })
     .catch(e => {
-      snotify.error('Unable to create User. Please try again.')
+      console.log(e)
+      if (e.response.status === 422) {
+        snotify.warning('Username/email already taken. Please try again.')
+      } else {
+        snotify.error('Unable to create User. Please try again.')
+      }
+      NProgress.done()
     })
   },
   async updateUser({ commit }, userData) {
@@ -83,6 +92,7 @@ const actions = {
     })
     .catch(e => {
       snotify.error(`There was an error logging you out: ${e}`)
+      NProgress.done()
     })
   }
 }
