@@ -1,25 +1,27 @@
 <template>
-  <div class="row">
+  <div class="user-account">
     <div class="col-md-10 offset-md-1">
       <form @submit.prevent="submitJoin">
         <div class="form-group justify-content-center">
           <label for="username-field">Username</label>
           <input
+            :class="{ invalid: $v.username.$invalid }"
             type="text"
             class="form-control"
             id="username-field"
-            :value="username"
-            @input="editUserField($event.target.value, 'setUsername')"
+            placeholder="Username"
+            v-model="username"
           />
         </div>
         <div class="form-group">
           <label for="email-field">Email</label>
           <input
+            :class="{ invalid: $v.email.$invalid }"
             type="text"
             class="form-control"
             id="email-field"
-            :value="email"
-            @input="editUserField($event.target.value, 'setEmail')"
+            placeholder="Email"
+            v-model="email"
           />
         </div>
         <div class="form-group">
@@ -28,8 +30,8 @@
             type="text"
             class="form-control"
             id="first-name-field"
-            :value="firstName"
-            @input="editUserField($event.target.value, 'setFirstName')"
+            placeholder="First Name"
+            v-model="firstName"
           />
         </div>
         <div class="form-group">
@@ -38,27 +40,18 @@
             type="text"
             class="form-control"
             id="last-name-field"
-            :value="lastName"
-            @input="editUserField($event.target.value, 'setLastName')"
+            placeholder="Last Name"
+            v-model="lastName"
           />
         </div>
-        <div class="form_option--check-block">
-          <label for="email-notifications-field">Email Notifications</label>
-          <input
-            type="checkbox"
-            class="form-control"
-            id="email-notifications-field"
-            :checked="emailNotifications"
-            @input="editUserField($event.target.checked, 'setEmailNotifications')"
-          />
+        <div class="form-group">
+          <button
+            type="submit"
+            class="btn btn-primary"
+          >
+            Submit
+          </button>
         </div>
-        <hr>
-        <button
-          type="submit"
-          class="btn btn-primary"
-        >
-          Submit
-        </button>
       </form>
     </div>
   </div>
@@ -67,6 +60,8 @@
 <script>
 import users from '@/requests/users.js'
 import { mapGetters } from 'vuex'
+import { validationMixin } from 'vuelidate'
+import { required, email, alpha } from 'vuelidate/lib/validators'
 
 export default {
   data() {
@@ -74,8 +69,19 @@ export default {
       username: '',
       email: '',
       firstName:'',
-      lastName: '',
-      emailNotifications: ''
+      lastName: ''
+    }
+  },
+  mixins: [validationMixin],
+  validations: {
+    username: {
+      required,
+      alpha
+    },
+    password: { required },
+    email: {
+      required,
+      email
     }
   },
   created() {
@@ -94,7 +100,6 @@ export default {
           this.email = response.data.email
           this.firstName = response.data.first_name
           this.lastName = response.data.last_name
-          this.emailNotifications = response.data.email_notifications
         })
         .catch(err => {
           console.log(err)
@@ -104,13 +109,17 @@ export default {
       this.$store.dispatch(`UserInfoStore/${method}`, value)
     },
     submitJoin() {
+      if (this.$v.$invalid) {
+        this.$snotify.error(`Please ensure all required fields are filled and valid`)
+        return
+      }
+
       const formData = {
         id: this.id,
         username: this.username,
         email: this.email,
         first_name: this.firstName,
-        last_name: this.lastName,
-        email_notifications: this.emailNotifications
+        last_name: this.lastName
       }
       this.$store.dispatch('UserInfoStore/updateUser', formData)
     }
@@ -119,12 +128,16 @@ export default {
 </script>
 
 <style scoped>
+.user-account {
+  margin: auto;
+  width: 80%;
+}
+
 .form-group {
   display: inline;
 }
 
 .form-group label {
-  text-align: right;
   clear: both;
   float: left;
   margin-right: 15px;
@@ -132,8 +145,18 @@ export default {
 }
 
 .form-group input {
-  width: 85%;
-  margin-top: 1px;
   float: right;
+  margin-top: 1px;
+  width: 85%;
+}
+
+button {
+  margin-top: 10px;
+}
+
+.invalid {
+  color: red;
+  background-color: #ffc9aa;
+  border: 1px solid red;
 }
 </style>

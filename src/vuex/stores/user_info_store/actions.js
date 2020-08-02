@@ -3,7 +3,7 @@ import Vue from 'vue/dist/vue.esm'
 import users from '@/requests/users.js'
 
 const actions = {
-  async login ({ commit }, loginData) {
+  async login ({ commit, rootGetters }, loginData) {
     const snotify = Vue.prototype.$snotify
 
     await users.loginUser(loginData)
@@ -14,6 +14,7 @@ const actions = {
       commit('setUsername', res.data.username)
       commit('setToken', res.data.token)
       commit('setTokenExpiration', expirationDate)
+      router.replace({ name: 'my_movies_path' })
     })
     .catch(e => {
       NProgress.done()
@@ -35,7 +36,7 @@ const actions = {
       commit('setUsername', res.data.username)
       commit('setToken', res.data.token)
       commit('setTokenExpiration', expirationDate)
-      router.replace({ name: 'root_path' })
+      router.replace({ name: 'my_movies_path' })
     })
     .catch(e => {
       console.log(e)
@@ -53,11 +54,6 @@ const actions = {
     await users.updateUser(userData)
     .then(res => {
       commit('setUsername', res.data.username)
-      commit('setEmail', res.data.email)
-      commit('setFirstName', res.data.first_name)
-      commit('setLastName', res.data.last_name)
-      commit('setEmailNotifications', res.data.email_notifications)
-      router.replace({ name: 'root_path' })
     })
     .catch(e => {
       snotify.error('Unable to create User. Please try again.')

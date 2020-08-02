@@ -9,6 +9,7 @@
       <form @submit.prevent="submitJoin">
         <div class="form-group justify-content-center">
           <input
+            :class="{ invalid: $v.username.$invalid }"
             type="text"
             class="form-control"
             id="username-field"
@@ -18,6 +19,7 @@
         </div>
         <div class="form-group">
           <input
+            :class="{ invalid: $v.password.$invalid }"
             type="password"
             class="form-control"
             id="password-field"
@@ -27,6 +29,7 @@
         </div>
         <div class="form-group">
           <input
+            :class="{ invalid: $v.email.$invalid }"
             type="text"
             class="form-control"
             id="email-field"
@@ -64,6 +67,9 @@
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate'
+import { required, email, alpha } from 'vuelidate/lib/validators'
+
 export default {
   data() {
     return {
@@ -74,8 +80,25 @@ export default {
       lastName: ''
     }
   },
+  mixins: [validationMixin],
+  validations: {
+    username: {
+      required,
+      alpha
+    },
+    password: { required },
+    email: {
+      required,
+      email
+    }
+  },
   methods: {
     submitJoin() {
+      if (this.$v.$invalid) {
+        this.$snotify.error(`Please ensure all required fields are filled and valid`)
+        return
+      }
+
       const formData = {
         username: this.username,
         password: this.password,
@@ -106,5 +129,11 @@ export default {
 
 button {
   margin-top: 10px;
+}
+
+.invalid {
+  color: red;
+  background-color: #ffc9aa;
+  border: 1px solid red;
 }
 </style>

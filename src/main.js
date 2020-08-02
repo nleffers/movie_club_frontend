@@ -1,4 +1,5 @@
 import Vue from 'vue/dist/vue.esm'
+import Vuelidate from 'vuelidate'
 import BootstrapVue from 'bootstrap-vue'
 import VueYouTubeEmbed from 'vue-youtube-embed'
 import { sync } from 'vuex-router-sync'
@@ -20,6 +21,7 @@ const options = {
   }
 }
 
+Vue.use(Vuelidate)
 Vue.use(BootstrapVue)
 Vue.use(VueYouTubeEmbed)
 Vue.use(Snotify, options)
