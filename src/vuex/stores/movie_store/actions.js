@@ -22,8 +22,8 @@ const actions = {
   clearMovies({ commit }) {
     commit('clearMovies')
   },
-  addToMovieReviews({ commit }, review) {
-    commit('addToMovieReviews', review)
+  createReview({ commit }, review) {
+    commit('createReview', review)
   },
   rateMovie({ commit }, rating) {
     commit('rateMovie', rating)

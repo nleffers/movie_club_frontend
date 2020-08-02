@@ -53,8 +53,12 @@ export default {
       }
       reviews.createReview(reviewObject)
       .then(response => {
+        this.title = ''
+        this.blog = ''
         reviewObject.id = response.data.id
-        this.$store.dispatch(`MovieStore/addToMovieReviews`, reviewObject)
+        reviewObject.created_at = response.data.created_at
+        reviewObject.written_by_username = this.$store.getters[`UserInfoStore/username`]
+        this.$store.dispatch(`MovieStore/createReview`, reviewObject)
       })
     }
   }

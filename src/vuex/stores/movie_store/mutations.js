@@ -22,8 +22,8 @@ const mutations = {
     state.topRated = []
     state.upcoming = []
   },
-  addToMovieReviews(state, payload) {
-    state.movie.reviews.unshift(payload)
+  createReview(state, payload) {
+    state.movie.reviews.push(payload)
   },
   rateMovie(state, value) {
     if (state.movie.user_rating) {
