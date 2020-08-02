@@ -43,6 +43,9 @@ export default {
     this.getMovie()
   },
   computed: {
+    state() {
+      return this.$store
+    },
     isAuthenticated() {
       return this.$store.getters['UserInfoStore/isAuthenticated']
     },
@@ -53,8 +56,11 @@ export default {
       return this.$store.getters[`MovieStore/movie`]
     },
     reviews() {
-      return this.$store.getters[`MovieStore/reviews`]
+      return this.movie && this.movie.reviews
     }
+  },
+  destroyed() {
+    this.$store.dispatch(`MovieStore/clearMovie`)
   },
   methods: {
     getMovie() {
@@ -63,9 +69,6 @@ export default {
         this.$store.dispatch(`MovieStore/setMovie`, response.data)
       })
     }
-  },
-  destroyed() {
-    this.$store.dispatch(`MovieStore/clearMovie`)
   }
 }
 </script>

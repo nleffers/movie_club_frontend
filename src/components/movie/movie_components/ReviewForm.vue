@@ -4,7 +4,7 @@
       <form @submit.prevent="updateReview">
         <div>
           <input
-            :value="review.title"
+            :value="title"
             @input="$emit('update:title', $event.target.value)"
           >
           </input>
@@ -13,7 +13,7 @@
           <textarea
             rows="3"
             max-rows="6"
-            :value="review.blog"
+            :value="blog"
             @input="$emit('update:blog', $event.target.value)"
           >
           </textarea>
@@ -25,33 +25,34 @@
       v-else
       class="show-review"
     >
-      <div class="review-title">{{ review.title }}</div>
-      <div class="review-blog">{{ review.blog }}</div>
+      <div class="review-title">{{ title }}</div>
+      <div class="review-blog">{{ blog }}</div>
     </div>
     <div
-      v-if="userIsOwner"
+      v-if="userIsOwner && !userEditing"
       class="edit-button"
-      @click="switchToEdit"
+      @click="editReview"
     >
       Edit
     </div>
     <div class="last-edited-at">
-      By {{ review.written_by_username }} at {{ review.created_at | localTime }}
+      By {{ written_by_username }} at {{ created_at | localTime }}
     </div>
   </div>
 </template>
 
 <script>
 import reviews from '@/requests/reviews.js'
-import EditReview from './EditReview.vue'
 
 export default {
   props: {
+    id: Number,
+    title: String,
+    blog: String,
+    written_by_username: String,
+    created_at: String,
+    user_id: Number,
     currentUserId: Number,
-    review: Object
-  },
-  components: {
-    EditReview
   },
   data() {
     return {
@@ -60,12 +61,12 @@ export default {
   },
   filters: {
     localTime(value) {
-      return new Date(value).toLocaleDateString()
+      return new Date(value).toLocaleString()
     }
   },
   computed: {
     userIsOwner() {
-      return this.review && this.currentUserId === this.review.user_id
+      return this.currentUserId === this.user_id
     }
   },
   methods: {
@@ -79,7 +80,7 @@ export default {
       reviews.updateReview(reviewObject)
       this.userEditing = false
     },
-    switchToEdit() {
+    editReview() {
       this.userEditing = true
     }
   }
@@ -104,6 +105,7 @@ export default {
 .edit-button {
   border: 1px solid black;
   border-radius: 5px;
+  cursor: pointer;
   margin: auto;
   padding-left: 5px;
   padding-right: 5px;

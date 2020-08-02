@@ -3,8 +3,8 @@
     <template v-if="reviews.length > 0">
       <template v-for="(review, index) in reviews">
         <review-form
+          v-bind.sync="review"
           :currentUserId="currentUserId"
-          :review="review"
           :key="index"
         />
       </template>
