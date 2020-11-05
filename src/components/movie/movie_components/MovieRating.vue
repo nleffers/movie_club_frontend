@@ -1,11 +1,12 @@
 <template>
   <div class="movie-rating">
     <div class="average-rating">Average Rating: {{ vote_average }}</div>
+    <div class="genres">{{ movieGenres }}</div>
     <div
       v-if="isAuthenticated"
       class="user-rating-wrapper"
     >
-      User Rating: 
+      User Rating:
       <div
         class="user-rating"
         :class="{ 'checked': oneStar }"
@@ -116,7 +117,8 @@ export default {
     imdb_id: String,
     vote_average: [Number, String],
     user_rating: [Number, String],
-    isAuthenticated: Boolean
+    isAuthenticated: Boolean,
+    movieGenres: String
   },
   computed: {
     oneStar() {
@@ -177,16 +179,28 @@ export default {
   margin-bottom: 15px;
 }
 
-.average-rating {
+.average-rating, .genres {
   border-right: 1px solid black;
   margin-right: 5px;
   padding-right: 25px;
+  width: 30%;
+}
+
+.genres, .user-rating-wrapper {
+  margin-left: 5px;
+  padding-left: 25px;
+}
+
+.average-rating {
   text-align: right;
-  width: 50%;
+}
+
+.genres {
+  text-align: center;
 }
 
 .user-rating-wrapper {
-  width: 50%;
+  width: 40%;
 }
 
 .user-rating {

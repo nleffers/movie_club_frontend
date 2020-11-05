@@ -39,7 +39,8 @@ export default {
 }
 
 .trailer-not-playing-row {
-  border: 1px solid black;
+  background-color: #fafafa;
+  border: 1px solid #ccc;
   border-radius: 10px;
   margin: 2px;
   height: 117px;

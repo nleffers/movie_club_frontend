@@ -67,6 +67,7 @@ export default {
 
 <style scoped>
 .create-review-column {
+  background-color: #fafafa;
   border: 1px solid black;
   border-radius: 5px;
   height: 500px;

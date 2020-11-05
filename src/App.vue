@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <vue-snotify />
+    <nav-bar />
     <div class="container-fluid">
-      <nav-bar />
       <router-view />
     </div>
   </div>
@@ -19,12 +19,17 @@ export default {
 </script>
 
 <style>
+html, #app {
+  min-height: 100vh;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: #eee;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .container-fluid {

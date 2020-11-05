@@ -10,11 +10,9 @@
       <movie-rating
         v-bind.sync="movie"
         :isAuthenticated="isAuthenticated"
+        :movieGenres="movieGenres"
       />
       <p>{{ movie.overview }}</p>
-      <div class="genre">
-        {{ movieGenres }}
-      </div>
     </div>
   </div>
 </template>
@@ -40,6 +38,7 @@ export default {
 
 <style scoped>
 .movie-info-wrapper {
+  margin-top: 20px;
   display: inline-block;
 }
 

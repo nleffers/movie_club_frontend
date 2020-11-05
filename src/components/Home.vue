@@ -81,6 +81,10 @@ export default {
 </script>
 
 <style scoped>
+.home-page {
+  margin-top: 20px;
+}
+
 .trailer-section {
   width: 90%;
   display: inline-block;

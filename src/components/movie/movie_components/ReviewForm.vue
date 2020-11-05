@@ -6,8 +6,7 @@
           <input
             :value="title"
             @input="$emit('update:title', $event.target.value)"
-          >
-          </input>
+          />
         </div>
         <div>
           <textarea

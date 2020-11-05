@@ -3,7 +3,7 @@
     <template v-if="reviews.length > 0">
       <template v-for="(review, index) in reviews">
         <review-form
-          v-bind.sync="review"
+          v-bind.sync="reviews[index]"
           :currentUserId="currentUserId"
           :key="index"
         />
@@ -46,6 +46,7 @@ export default {
 
 <style scoped>
 .reviews-column {
+  background-color: #fafafa;
   border: 1px solid black;
   border-radius: 5px;
   height: 500px;

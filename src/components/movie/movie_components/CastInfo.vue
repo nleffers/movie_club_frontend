@@ -2,6 +2,7 @@
   <div class="cast-info-column">
     <div
       v-for="cast in casts"
+      :key="cast.name"
       class="character-info"
     >
       <div class="profile-picture">
@@ -30,6 +31,7 @@ export default {
 
 <style scoped>
 .cast-info-column {
+  background-color: #fafafa;
   border: 1px solid black;
   border-radius: 5px;
   height: 500px;
@@ -43,6 +45,11 @@ export default {
   padding: 5px;
   display: inline-flex;
   width: 100%;
+  border-bottom: 1px solid #ccc;
+}
+
+.character-info:last-child {
+  border-bottom: 0;
 }
 
 .profile-picture {
